@@ -18,7 +18,16 @@ var app = new Framework7({
       {
         path: '/about/',
         url: 'about.html',
+      },   
+      {
+        path: '/login/',
+        url: 'login.html',
       },
+      ,   
+      {
+        path: '/index/',
+        url: 'index.html',
+      }
     ]
     // ... other parameters
   });
@@ -29,7 +38,6 @@ var mainView = app.views.create('.view-main');
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
   
-    $$('#home').on('click', fnHome);
     $$('.tocaBoton').on('click', fnTocaBoton);
 
 });
@@ -43,8 +51,14 @@ $$(document).on('page:init', function (e) {
 // Option 2. Using live 'page:init' event handlers for each page
 $$(document).on('page:init', '.page[data-name="about"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
-    console.log(e);
-    alert('Hello');
+
+
+})
+
+$$(document).on('page:init', '.page[data-name="login"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+
+  
 })
 
 
@@ -73,6 +87,3 @@ function fnTocaBoton() {
     $$('#msgBtn').html(mensaje);
 }
 
-function fnHome(){
- $$('#home').attr('href','/') 
-}

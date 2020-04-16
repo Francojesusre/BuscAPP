@@ -1,0 +1,79 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
+<div class="page" data-name="login">
+    <div class="panel panel-left panel-reveal panel-resizable panel-init">
+        <div class="block">
+            <h3>Bienvenido</h3>
+            <div>
+                <p class="row">
+                    <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
+                </p>
+            </div>
+            <div>
+                <p class="row">
+                    <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
+                </p>
+                <div>
+                    <ul>
+                        <span class="h2">Modo oscuro</span>
+                        <label class="toggle toggle-init color-blue">
+                            <input type="checkbox" checked>
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </ul>
+                </div>
+                <div>
+                    <p><a class="panel-close" href="#">Cerrar</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
+            <div class="title centro">BuscAPP</div>
+            <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="page-content text-align-center">
+            <div class="block">
+                <form class="list" id="my-form">
+                    <ul>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">E-mail</div>
+                                    <div class="item-input-wrap">
+                                        <input type="email" id="email" name="email" placeholder="E-mail">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Contraseña</div>
+                                    <div class="item-input-wrap">
+                                        <input type="password" id="clave" name="clave" placeholder="Su clave">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+                <div class="row">
+                    <div class="col"> </div>
+                    <div class="col"><a href="#" class="col button button-large button-fill" id="login">Login</a></div>
+                    <div class="col"> </div>
+                </div>
+                <br /><br />
+                <div class="row">
+                    <div class="col"> </div>
+                    <div class="col"><a href="#" id="registro">Crear un Cuenta nueva</a></div>
+                    <div class="col"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
