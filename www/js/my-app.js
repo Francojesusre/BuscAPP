@@ -28,7 +28,8 @@ var mainView = app.views.create('.view-main');
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
-
+  
+    $$('#home').on('click', fnHome);
     $$('.tocaBoton').on('click', fnTocaBoton);
 
 });
@@ -70,10 +71,8 @@ function fnTocaBoton() {
 
 
     $$('#msgBtn').html(mensaje);
-
-
-
 }
 
-
-
+function fnHome(){
+ $$('#home').attr('href','/') 
+}
