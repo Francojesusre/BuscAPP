@@ -7,4 +7,7 @@
 .h2{
     font-size: 20px;
 }
-
+*{
+    background-color: rgb(23, 23, 49);
+    color: white;
+}

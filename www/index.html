@@ -11,8 +11,8 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'; font-src * data: URIs ">
+    <!-- <meta http-equiv="Content-Security-Policy"
+    content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'; font-src * data: URIs ">   -->
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -95,41 +95,11 @@
 
               <div class="block">
                 <h3>Contenido del Index</h3>
-                <form class="list" id="my-form">
-                  <ul>
-                    <li>
-                      <div class="item-content item-input">
-                        <div class="item-inner">
-                          <div class="item-title item-label">E-mail</div>
-                          <div class="item-input-wrap">
-                            <input type="email" id="email" name="email" placeholder="E-mail">
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="item-content item-input">
-                        <div class="item-inner">
-                          <div class="item-title item-label">Contraseña</div>
-                          <div class="item-input-wrap">
-                            <input type="password" id="clave" name="clave" placeholder="Su clave">
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </form>
-                <div class="row">
-                  <div class="col"> </div>
-                  <div class="col"><a href="#" class="button button-round button-fill" id="registro">Login</a></div>
-                  <div class="col"> </div>
-                </div>
-                <br /><br />
-                <div class="row">
-                  <div class="col"> </div>
-                  <div class="col"><a href="#" class="button button-round button-fill" id="login">Registro</a></div>
-                  <div class="col"> </div>
-                </div>
+
+                <!-- >> <div style="width: 100vw; height: 70vh" id="mapContainer"></div> -->
+
+                <video src="" id="video" autoplay="true"></video>
+
                 <!-- EL POPUP:
                     - Ver que la relacion se propude con la clase .my-popup
                     - El o los elementos que lo abren tienen la clase .popup-open y abrirá el popup definido en data-popup
@@ -187,10 +157,12 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
       </script>
-
+      <script src='main.js'></script>
       <script type="text/javascript" src="cordova.js"></script>
       <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
       <script type="text/javascript" src="js/my-app.js"></script>
+      <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>

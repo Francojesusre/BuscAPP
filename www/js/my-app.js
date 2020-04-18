@@ -40,12 +40,34 @@ $$(document).on('deviceready', function() {
   
     $$('.tocaBoton').on('click', fnTocaBoton);
 
+    
 });
+
+ /* // Initialize the platform object:
+ var platform = new H.service.Platform({
+  'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
+});
+
+// Obtain the default map types from the platform object
+var maptypes = platform.createDefaultLayers();
+
+// Instantiate (and display) a map object:
+var map = new H.Map(
+  document.getElementById('mapContainer'),
+  maptypes.vector.normal.map,
+  {
+    zoom: 10,
+    center: { lng: -33.1167, lat: -61.3333 }
+  });
+});
+*/
+
 
 // Option 1. Using one 'page:init' handler for all pages
 $$(document).on('page:init', function (e) {
     // Do something here when page loaded and initialized
     console.log(e);
+    
 })
 
 // Option 2. Using live 'page:init' event handlers for each page
@@ -83,7 +105,5 @@ function fnTocaBoton() {
     mensaje += "Soy del Grupo: " + p1 + "<br/>";
     mensaje += "Y tengo el nro: " + p2 + "<br/>";
 
-
     $$('#msgBtn').html(mensaje);
 }
-
