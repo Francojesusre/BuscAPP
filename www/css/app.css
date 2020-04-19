@@ -7,12 +7,20 @@
 .h2{
     font-size: 20px;
 }
-*{
-    background-color: rgb(23, 23, 49);
+.modoOscuro{
+    background-color: rgb(31, 31, 39);
     color: white;
+}
+.modoComun{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 #cam{
     width: 100vw;
     height: 50vh;
+}
+
+.margen{
+    margin: 20px;
 }

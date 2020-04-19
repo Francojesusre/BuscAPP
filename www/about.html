@@ -1,14 +1,38 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
 <div class="page" data-name="about">
-    <div class="navbar">
-        <div class="navbar-inner sliding">
-        <div class="left">
-            <a href="#" class="link back">
-            <i class="icon icon-back"></i>
-            <span class="ios-only">Back</span>
-            </a>
+    <div class="panel panel-left panel-reveal panel-resizable panel-init">
+        <div class="block">
+            <h3>Bienvenido</h3>
+            <div>
+                <p class="row">
+                    <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
+                </p>
+            </div>
+            <div>
+                <p class="row">
+                    <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
+                </p>
+                <div>
+                    <ul>
+                        <span class="h2">Modo oscuro</span>
+                        <label class="toggle toggle-init color-blue">
+                            <input type="checkbox" checked>
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </ul>
+                </div>
+                <div>
+                    <p><a class="panel-close" href="#">Cerrar</a></p>
+                </div>
+            </div>
         </div>
-        <div class="title">About Framework7</div>
+    </div>
+    <div class="navbar">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
+            <div class="title centro">BuscAPP</div>
+            <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
         </div>
     </div>
     <div class="page-content">
