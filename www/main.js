@@ -1,4 +1,5 @@
-navigator.mediaDevices.getUserMedia({ audio: false, video: true}).then((stream)=>{console.log(stream)
+navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { exact: "environment" } } }).then((stream)=>{console.log(stream)
+    
     let video = document.getElementById('video')
 
     video.srcObject = stream
