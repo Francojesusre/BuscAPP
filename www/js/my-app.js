@@ -70,10 +70,12 @@ var map = new H.Map(
   $$(document).on('page:init', function (e) {
     // Do something here when page loaded and initialized
     console.log(e);
+    app.dialog.preloader('My text...');
+    setTimeout(function () {
+      app.dialog.close();
+    }, 200);
 
-    $$('#modoOscuro').on('click', fnModoOscuro);
-  })
-
+  });
 
   $$(document).on('page:init', '.page[data-name="index"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized

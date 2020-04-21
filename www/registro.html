@@ -1,44 +1,30 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
 <div class="page" data-name="registro">
-  <div class="panel panel-left panel-reveal panel-resizable panel-init">
+  <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
     <div class="block">
-      <h3>Bienvenido</h3>
-      <div>
-        <p class="row">
-          <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
-        </p>
+      <h2 class="centro">Bienvenido</h2>
+      <div class="list links-list">
+        <ul>
+          <li><a href="/index/" id="home">Home</a></li>
+        </ul>
+        <ul>
+          <li><a href="/login/" id="ingresar">Ingresar</a></li>
+        </ul>
       </div>
-      <div>
-        <p class="row">
-          <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
-        </p>
-        <div>
-          <ul>
-            <span class="h2">Modo oscuro</span>
-            <label class="toggle toggle-init color-blue">
-              <input type="checkbox" checked>
-              <span class="toggle-icon"></span>
-            </label>
-          </ul>
-        </div>
-        <div>
-          <p><a class="panel-close" href="#">Cerrar</a></p>
-        </div>
-      </div>
+      <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
     </div>
   </div>
   <div class="navbar">
     <div class="navbar-bg"></div>
     <div class="navbar-inner">
-      <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
-      <div class="title centro">BuscAPP</div>
-      <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
+      <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
+      <div class="title">Registro</div>
+      <img src="/imagenes/icono.png" alt="logo" class="right margenDerecho">
     </div>
   </div>
-  <div class="page-content">
-
-    <div class="block-title centro margen h2">Completá tus datos</div>
-    <div class="list inline-labels no-hairlines-md">
+  <div class="page-content ">
+    <div class="centradoReg">
+      <img src="/imagenes/addfoto.png" alt="foto" id="imagen" class="centroimg">
       <form class="list" id="my-form">
         <li class="item-content item-input item-input-outline centro">
           <div class="item-inner">
@@ -49,7 +35,7 @@
             </div>
           </div>
         </li>
-        <li class="item-content item-input item-input-outline centro">
+        <li class="item-content item-input item-input-outline ">
           <div class="item-inner">
             <div class="item-title item-floating-label">E-mail</div>
             <div class="item-input-wrap">
@@ -58,7 +44,7 @@
             </div>
           </div>
         </li>
-        <li class="item-content item-input item-input-outline centro">
+        <li class="item-content item-input item-input-outline ">
           <div class="item-inner">
             <div class="item-title item-floating-label">Contraseña</div>
             <div class="item-input-wrap">
@@ -71,16 +57,7 @@
     </div>
 
     <div class="row">
-      <div class="col"> </div>
-      <div class="col"><a href="#" class="button button-round button-fill" id="guardar">Aceptar</a></div>
-      <div class="col"> </div>
+      <div class="col"><a href="#" class="col button button-fill centro" id="guardar">Aceptar</a></div>
     </div>
-
-    <div class="row">
-      <div class="col"> </div>
-      <div class="col"><a href="#" class="button button-round button-fill" id="prueba">prueba</a></div>
-      <div class="col"> </div>
-    </div>
-
   </div>
 </div>

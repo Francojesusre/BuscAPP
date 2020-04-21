@@ -12,7 +12,8 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
 
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'; font-src * data: URIs ">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'; font-src * data: URIs ">
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -45,8 +46,6 @@
           </ul>
         </div>
         <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
-        
-
       </div>
     </div>
 
@@ -61,63 +60,82 @@
         <!-- Top Navbar -->
         <div class="navbar">
           <div class="navbar-bg"></div>
-          <div class="navbar-inner">
+          <div class="navbar-inner navbar">
             <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
             <div class="title">BuscAPP</div>
-            <img src="/imagenes/icono.png" alt="" class="right margenDerecho">
+            <img src="" alt="logo" class="right margenDerecho">
           </div>
         </div>
 
         <!-- Toolbar -->
         <div class="toolbar toolbar-bottom">
-          <div class="toolbar-inner">
+          <div class="toolbar-inner navbar">
             <!-- Toolbar links -->
-           <a href="#" data-popup=".my-popup" class="popup-open centro h2">Ayuda</a>
+            <a href="#" data-popup=".my-popup" class="popup-open centro h2">Ayuda</a>
           </div>
         </div>
 
         <!-- Scrollable page content -->
         <div class="page-content text-align-center">
+          <div class="categorias">
+            <div class="row largo">
 
-          <div class="block">
-            <h3>Contenido del Index</h3>
+              <div class="col-50 centro">
+                <div class="card cuadrado bar">
+                  <h2>Bares</h2>
+                </div>
+                <div class="card cuadrado verduleria">
+                  <h2>Verdulerias</h2>
+                </div>
+                <div class="card cuadrado super">
+                  <h2>Market</h2>
+                </div>
+              </div>
 
-            <!-- >> <div style="width: 100vw; height: 70vh" id="mapContainer"></div> -->
+              <div class="col-50 centro">
+                <div class="card cuadrado ypf">
+                  <h2>Estaciones de conbustible</h2>
+                </div>
+                <div class="card cuadrado banco">
+                  <h2>Cajeros automaticos</h2>
+                </div>
+                <div class="card cuadrado casino">
+                  <h2>Casinos</h2>
+                </div>
+              </div>
+            </div>
 
-            <div id="cam"><video src="" id="video" autoplay="true"></video></video>
-
-              <!-- EL POPUP:
+            <!-- EL POPUP:
                     - Ver que la relacion se propude con la clase .my-popup
                     - El o los elementos que lo abren tienen la clase .popup-open y abrirá el popup definido en data-popup
                     - El o los elementos que lo cierren tienen la clase popup-close y se cerrará a sí mismo. 
                    -->
-              <div class="popup my-popup">
-                <div class="view">
-                  <div class="page">
-                    <div class="navbar">
-                      <div class="navbar-bg"></div>
-                      <div class="navbar-inner">
-                        <div class="title">Ayuda</div>
-                        <div class="right">
-                          <!-- Link to close popup -->
-                          <a class="link popup-close">Cerrar</a>
-                        </div>
+            <div class="popup my-popup">
+              <div class="view">
+                <div class="page">
+                  <div class="navbar">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner">
+                      <div class="title">Ayuda</div>
+                      <div class="right">
+                        <!-- Link to close popup -->
+                        <a class="link popup-close">Cerrar</a>
                       </div>
                     </div>
-                    <div class="page-content txt col">
-                      <h3>
+                  </div>
+                  <div class="page-content txt col">
+                    <h3>
                       BuscAPP es una excelente herramienta desarrollada para brindar a todo usuario que quiere saber
                       de los servicios que se encuentran a su alrededor de una manera muy autodidacta.
                       Encuentra todos esos lugares que necesites de la manera más fácil, solamente apuntando tu
                       móvil a tus alrededores descubrirás todos tus servicios.
                       <br>
-                        1. Selecciona una categoria
+                      1. Selecciona una categoria
                       <br>
-                        2. Sostén el movil a la altura de tus ojos
+                      2. Sostén el movil a la altura de tus ojos
                       <br>
-                        3. Disfruta de tus servicios a tu alrededor
+                      3. Disfruta de tus servicios a tu alrededor
                     </h3>
-                    </div>
                   </div>
                 </div>
               </div>

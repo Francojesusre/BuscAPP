@@ -1,4 +1,3 @@
-/* Your app custom styles here */
 
 .centro{
     margin:auto;
@@ -16,14 +15,6 @@
 }
 .h2{
     font-size: 20px;
-}
-.modoOscuro{
-    background-color: rgb(31, 31, 39);
-    color: white;
-}
-.modoComun{
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
 }
 
 #cam{
@@ -43,9 +34,146 @@
 }
 
 .margenDerecho{
-      margin-right: 10px;
+    margin-right: 10px;
 }
 
 #boton{
-      text-align: center;
+    text-align: center;
+}
+
+.marginTop{
+    margin-top: 25px;
+}
+
+.centradoReg{
+    margin-top: 75px;
+}
+#guardar{
+    width: 60vw;
+}
+#login{
+    width: 70vw;
+}
+.categorias{
+    width: 100vw;
+    height: 83.5vh;
+    background-color: rgb(39, 32, 48);
+}
+.largo{
+    height: 87vh;
+    margin: auto;
+}
+.cuadrado{
+    width: 155px;
+    height: 155px;
+    border-radius: 25px;
+    align-items: center;  
+}
+
+.banco{
+    background-image: url(../imagenes/banco.jpg);
+    background-size: cover;
+    position: relative;
+}
+.banco:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgb(10, 49, 22);
+    position: absolute;
+    opacity: 0.4;
+    display: flex;
+}
+
+.bar{
+    background-image: url(../imagenes/bar.jpg);
+    background-size: cover;
+    position: relative;
+}
+.bar:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgba(93, 38, 156, 0.849);
+    position: absolute;
+    opacity: 0.4;
+    display: flex;
+}
+
+.verduleria{
+    background-image: url(../imagenes/verduleria.jpg);
+    background-size: cover;
+    position: relative;
+}
+.verduleria:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgba(83, 95, 16, 0.849);
+    position: absolute;
+    opacity: 0.4;
+    display: flex;
+}
+
+.ypf{
+    background-image: url(../imagenes/ypf.jpg);
+    background-size: cover;
+    position: relative;
+}
+.ypf:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgba(4, 92, 80, 0.849);
+    position: absolute;
+    opacity: 0.4;
+    display: flex;
+}
+
+.super{
+    background-image: url(../imagenes/super.jpg);
+    background-size: cover;
+    position: relative;
+}
+.super:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgb(1, 31, 48);
+    position: absolute;
+    opacity: 0.4;
+    display: flex;
+}
+
+.casino{
+    background-image: url(../imagenes/casino.jpg);
+    background-size: cover;
+    position: relative;
+}
+.casino:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgba(226, 147, 73, 0.849);
+    position: absolute;
+    opacity: 0.4;
+    display: flex;
+}
+
+.cuadrado h2{
+    color: white;
+    position: relative;
+    margin: 0;
+    -webkit-text-stroke: 0.4px black;
+    font-size: 26px;
+}
+
+.navbar{
+    background-color: rgb(92, 92, 92);
 }

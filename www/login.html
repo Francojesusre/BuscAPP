@@ -1,121 +1,56 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
 <div class="page" data-name="login">
-    <div class="panel panel-left panel-reveal panel-resizable panel-init">
+    <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
         <div class="block">
-            <h3>Bienvenido</h3>
-            <div>
-                <p class="row">
-                    <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
-                </p>
+            <h2 class="centro">Bienvenido</h2>
+            <div class="list links-list">
+                <ul>
+                    <li><a href="/index/" id="home">Home</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/login/" id="ingresar">Ingresar</a></li>
+                </ul>
             </div>
-            <div>
-                <p class="row">
-                    <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
-                </p>
-                <div>
-                    <ul>
-                        <span class="h2">Modo oscuro</span>
-                        <label class="toggle toggle-init color-blue">
-                            <input type="checkbox" checked>
-                            <span class="toggle-icon"></span>
-                        </label>
-                    </ul>
-                </div>
-                <div>
-                    <p><a class="panel-close" href="#">Cerrar</a></p>
-                </div>
-            </div>
+            <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
         </div>
     </div>
     <div class="navbar">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
-            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
-            <div class="title centro">BuscAPP</div>
-            <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
+            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
+            <div class="title">BuscAPP</div>
+            <img src="/imagenes/icono.png" alt="logo" class="right margenDerecho">
         </div>
     </div>
-    <div class="page-content">
+    <div class="page-content marginTop">
         <div class="block">
 
-                <img src="/imagenes/logo.png" alt="" id="imagen" class="centroimg">
-                <div class="login-screen-title">Login</div>
-                <form class="list" id="my-form">
-                    <li class="item-content item-input item-input-outline ">
-                        <div class="item-inner">
-                            <div class="item-title item-floating-label">E-mail</div>
-                            <div class="item-input-wrap">
-                                <input type="email" placeholder="Email" id="email">
-                                <span class="input-clear-button"></span>
-                            </div>
+            <img src="/imagenes/login.png" alt="foto" id="imagen" class="centroimg">
+            <div class="login-screen-title">Login</div>
+            <form class="list" id="my-form">
+                <li class="item-content item-input item-input-outline ">
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">E-mail</div>
+                        <div class="item-input-wrap">
+                            <input type="email" placeholder="Email" id="email">
+                            <span class="input-clear-button"></span>
                         </div>
-                    </li>
-                    <li class="item-content item-input item-input-outline ">
-                        <div class="item-inner">
-                            <div class="item-title item-floating-label">Contraseña</div>
-                            <div class="item-input-wrap">
-                                <input type="password" placeholder="Contraseña" id="clave">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                </form>
-                <div class="row">
-                    <div class="col"> </div>
-                    <div class="col"><a href="#" class="col button button-large button-fill color-green" id="login">Aceptar</a>
                     </div>
-                    <div class="col"> </div>
-                </div>
-                <div class="row">
-                    <div class="col"> </div>
-                    <div class="col"><a href="/registro/" id="registro">Crear un Cuenta nueva</a></div>
-                    <div class="col"> </div>
-                </div>
-
+                </li>
+                <li class="item-content item-input item-input-outline ">
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">Contraseña</div>
+                        <div class="item-input-wrap">
+                            <input type="password" placeholder="Contraseña" id="clave">
+                            <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+            </form>
+            <div class="row">
+                <a href="#" class="col button button-large button-fill color-green centro" id="login">Aceptar</a>
+            </div>
+            <div class="col centro marginTop h2"><a href="/registro/" id="registro">Crear un Cuenta nueva</a></div>
         </div>
     </div>
 </div>
-<div>
-
-
-
-
-    <!-- 
-        <div class="page-content text-align-center">
-                <div class="page-content login-screen-content">
-                    <div class="login-screen-title">BuscAPP</div>
-                    <form>
-                        <div class="list">
-                            <ul>
-                                <li class="item-content item-input">
-                                    <div class="item-inner">
-                                        <div class="item-title item-label">E-mail</div>
-                                        <div class="item-input">
-                                            <input type="text" name="username" placeholder="Your username">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item-content item-input">
-                                    <div class="item-inner">
-                                        <div class="item-title item-label">Password</div>
-                                        <div class="item-input">
-                                            <input type="password" name="password" placeholder="Your password">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="list">
-                            <ul>
-                                <li><a href="#" class="col button button-large button-fill" id="login">Login</a></li>
-                            </ul>
-                            <div class="block-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <p><a href="#" class="close-login-screen">Close Login Screen</a></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            
-        </div>
-    -->
