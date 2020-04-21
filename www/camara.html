@@ -1,5 +1,5 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
-<div class="page" data-name="login">
+<div class="page" data-name="camara">
   <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
       <div class="block">
           <h2 class="centro">Bienvenido</h2>
@@ -23,6 +23,13 @@
       </div>
   </div>
   <div class="page-content ">
-    <div id="cam"><video src="" id="video" autoplay="true"></video></video>
-  </div>
+    <div class="block">
+      <div class="row">
+        <button class="col button button-fill" id="btnCam">Camara</button>
+        <button class="col button button-outline" id="btnMap">Mapa</button>
+      </div>
+    </div>
+    <!-- <div id="cam"><video src="" id="video" autoplay="true"></video></div>  --> 
+    <div style="width: 100vw; height: 480px" id="mapContainer"></div>
 </div>
+

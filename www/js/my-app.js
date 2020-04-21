@@ -28,6 +28,10 @@
       {
         path: '/registro/',
         url: 'registro.html',
+      },
+      {
+        path: '/camara/',
+        url: 'camara.html',
       }
     ]
     // ... other parameters
@@ -35,6 +39,18 @@
 
   var mainView = app.views.create('.view-main');
 
+  var lat=0,lon=0;
+
+  // Option 1. Using one 'page:init' handler for all pages
+  $$(document).on('page:init', function (e) {
+    // Do something here when page loaded and initialized
+    console.log(e);
+    app.dialog.preloader('My text...');
+    setTimeout(function () {
+      app.dialog.close();
+    }, 200);
+
+  });
 
   // Handle Cordova Device Ready Event
   $$(document).on('deviceready', function () {
@@ -44,6 +60,14 @@
 
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
+
+    $$('.bar').on('click', fnVisor);
+    $$('.verduleria').on('click', fnVisor);
+    $$('.casino').on('click', fnVisor);
+    $$('.ypf').on('click', fnVisor);
+    $$('.super').on('click', fnVisor);
+    $$('.banco').on('click', fnVisor);
+
   });
 
   /* // Initialize the platform object:
@@ -65,25 +89,50 @@ var map = new H.Map(
 });
 */
 
-
-  // Option 1. Using one 'page:init' handler for all pages
-  $$(document).on('page:init', function (e) {
-    // Do something here when page loaded and initialized
-    console.log(e);
-    app.dialog.preloader('My text...');
-    setTimeout(function () {
-      app.dialog.close();
-    }, 200);
-
-  });
-
   $$(document).on('page:init', '.page[data-name="index"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
 
+    $$('.bar').on('click', fnVisor);
+    $$('.verduleria').on('click', fnVisor);
+    $$('.casino').on('click', fnVisor);
+    $$('.ypf').on('click', fnVisor);
+    $$('.super').on('click', fnVisor);
+    $$('.banco').on('click', fnVisor);
+
   })
+
+
+  $$(document).on('page:init', '.page[data-name="camara"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+
+  $$('#ingresar').on('click', fnOcultaPanel);
+  $$('#home').on('click', fnOcultaPanel);
+
+  $$('#btnMap').on('click', fnPintaMap);
+  $$('#btnCam').on('click', fnPintaCam);
+   
+  // Initialize the platform object:
+  var platform = new H.service.Platform({
+    'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
+  });
+  // Obtain the default map types from the platform object
+  var maptypes = platform.createDefaultLayers();
+  // Instantiate (and display) a map object:
+  var map = new H.Map(document.getElementById('mapContainer'),maptypes.vector.normal.map, {
+    zoom: 10,
+    center: 
+    {
+      lng: -33.1167,
+      lat: -61.3333
+    }
+    });
+
+  });
+
+
   // Option 2. Using live 'page:init' event handlers for each page
   $$(document).on('page:init', '.page[data-name="registro"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
@@ -128,14 +177,6 @@ var map = new H.Map(
     $$('#msgBtn').html(mensaje);
   }
 
-  function fnModoOscuro() {
-    if ($$(this).prop("checked") == true) {
-      $$('*').removeClass("modoComun").addClass("modoOscuro");
-    } else {
-      $$('*').removeClass("modoOscuro").addClass("modoComun");
-    }
-  }
-
   function fnRegistro() {
     var huboError = 0;
     var email = $$('#regEmail').val();
@@ -147,7 +188,7 @@ var map = new H.Map(
         huboError = 1;
         console.log(error.code);
         console.log(error.message);
-        alert('error')
+        alert('Error')
       })
       .then(function () {
         if (huboError == 0) {
@@ -169,7 +210,7 @@ var map = new H.Map(
         huboError = 1;
         console.log(error.code);
         console.log(error.message);
-        alert('error')
+        alert('Error')
       })
       .then(function () {
         if (huboError == 0) {
@@ -179,6 +220,22 @@ var map = new H.Map(
       });
   }
 
-  function fnOcultaPanel(){
+  function fnOcultaPanel() {
     app.panel.close();
+  }
+
+  function fnVisor() {
+    mainView.router.navigate("/camara/");
+  }
+
+
+  function fnPintaCam() {
+    $$('#btnMap').removeClass("button-fill").addClass("button-outline");
+    $$('#btnCam').addClass("button-fill");
+
+  }
+
+  function fnPintaMap() {
+    $$('#btnCam').removeClass("button-fill").addClass("button-outline");
+    $$('#btnMap').addClass("button-fill");
   }
