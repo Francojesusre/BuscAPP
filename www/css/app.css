@@ -4,6 +4,16 @@
     margin:auto;
     text-align: center;
 }
+.centroimg{
+    display:block;
+    margin:auto;
+}
+.txt{
+    width: 80vw;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+}
 .h2{
     font-size: 20px;
 }
@@ -20,7 +30,22 @@
     width: 100vw;
     height: 50vh;
 }
-
+.btnMenu{
+    margin-left: 10px;
+    font-size: 32px;
+}
 .margen{
     margin: 20px;
+}
+#imagen{
+    width: 100px;
+    height: 100px;
+}
+
+.margenDerecho{
+      margin-right: 10px;
+}
+
+#boton{
+      text-align: center;
 }

@@ -11,7 +11,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <!-- <meta http-equiv="Content-Security-Policy"
+  <!-- <meta http-equiv="Content-Security-Policy"
     content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'; font-src * data: URIs ">   -->
 
   <!-- Required meta tags-->
@@ -33,98 +33,90 @@
 
 <body>
   <div id="app">
-    <div class="panel panel-left panel-reveal panel-resizable panel-init">
+    <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
       <div class="block">
-        <h3>Bienvenido</h3>
-        <div>
-          <p class="row">
-            <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
-          </p>
+        <h2 class="centro">Bienvenido</h2>
+        <div class="list links-list">
+          <ul>
+            <li><a href="/index/" id="home">Home</a></li>
+          </ul>
+          <ul>
+            <li><a href="/login/" id="ingresar">Ingresar</a></li>
+          </ul>
         </div>
-        <div>
-          <p class="row">
-            <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
-          </p>
-          <div>
-            <ul>
-              <span class="h2">Modo oscuro</span>
-              <label class="toggle toggle-init color-blue">
-                <input id="modoOscuro" type="checkbox" checked>
-                <span class="toggle-icon"></span>
-              </label>
-            </ul>
-          </div>
-          <div>
-            <p><a class="panel-close" href="#">Cerrar</a></p>
-          </div>
-        </div>
+        <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
+        
+
       </div>
     </div>
 
+    <!-- Statusbar overlay -->
+    <div class="statusbar"></div>
 
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="index" class="page">
 
-        <!-- Statusbar overlay -->
-        <div class="statusbar"></div>
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
+            <div class="title">BuscAPP</div>
+            <img src="/imagenes/icono.png" alt="" class="right margenDerecho">
+          </div>
+        </div>
 
-        <!-- Your main view, should have "view-main" class -->
-        <div class="view view-main">
-          <!-- Initial Page, "data-name" contains page name -->
-          <div data-name="index" class="page">
+        <!-- Toolbar -->
+        <div class="toolbar toolbar-bottom">
+          <div class="toolbar-inner">
+            <!-- Toolbar links -->
+           <a href="#" data-popup=".my-popup" class="popup-open centro h2">Ayuda</a>
+          </div>
+        </div>
 
-            <!-- Top Navbar -->
-            <div class="navbar">
-              <div class="navbar-bg"></div>
-              <div class="navbar-inner">
-                <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
-                <div class="title centro">BuscAPP</div>
-                <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
-              </div>
-            </div>
+        <!-- Scrollable page content -->
+        <div class="page-content text-align-center">
 
-            <!-- Toolbar -->
-            <div class="toolbar toolbar-bottom">
-              <div class="toolbar-inner">
-                <!-- Toolbar links -->
-                <a href="#" data-popup=".my-popup" class="popup-open centro h2">Ayuda</a>
+          <div class="block">
+            <h3>Contenido del Index</h3>
 
-              </div>
-            </div>
+            <!-- >> <div style="width: 100vw; height: 70vh" id="mapContainer"></div> -->
 
-            <!-- Scrollable page content -->
-            <div class="page-content text-align-center">
+            <div id="cam"><video src="" id="video" autoplay="true"></video></video>
 
-              <div class="block">
-                <h3>Contenido del Index</h3>
-
-                <!-- >> <div style="width: 100vw; height: 70vh" id="mapContainer"></div> -->
-
-                <div id="cam"><video src="" id="video" autoplay="true"></video></video>
-
-                <!-- EL POPUP:
+              <!-- EL POPUP:
                     - Ver que la relacion se propude con la clase .my-popup
                     - El o los elementos que lo abren tienen la clase .popup-open y abrirá el popup definido en data-popup
                     - El o los elementos que lo cierren tienen la clase popup-close y se cerrará a sí mismo. 
                    -->
-                <div class="popup my-popup">
-                  <div class="view">
-                    <div class="page">
-                      <div class="navbar">
-                        <div class="navbar-bg"></div>
-                        <div class="navbar-inner">
-                          <div class="title centro">Ayuda</div>
-                          <div class="right">
-                            <!-- Link to close popup -->
-                            <a class="link popup-close">Cerrar</a>
-                          </div>
+              <div class="popup my-popup">
+                <div class="view">
+                  <div class="page">
+                    <div class="navbar">
+                      <div class="navbar-bg"></div>
+                      <div class="navbar-inner">
+                        <div class="title">Ayuda</div>
+                        <div class="right">
+                          <!-- Link to close popup -->
+                          <a class="link popup-close">Cerrar</a>
                         </div>
                       </div>
-                      <div class="page-content">
-                        BuscAPP es una excelente herramienta desarrollada para brindar a todo usuario que quiere saber
-                        de los servicios que se encuentran a su alrededor de una manera muy autodidacta.
-                        Encuentra todos esos lugares que necesites de la manera más fácil, solamente apuntando tu
-                        móvil a tus alrededores descubrirás todos tus servicios.
-
-                      </div>
+                    </div>
+                    <div class="page-content txt col">
+                      <h3>
+                      BuscAPP es una excelente herramienta desarrollada para brindar a todo usuario que quiere saber
+                      de los servicios que se encuentran a su alrededor de una manera muy autodidacta.
+                      Encuentra todos esos lugares que necesites de la manera más fácil, solamente apuntando tu
+                      móvil a tus alrededores descubrirás todos tus servicios.
+                      <br>
+                        1. Selecciona una categoria
+                      <br>
+                        2. Sostén el movil a la altura de tus ojos
+                      <br>
+                        3. Disfruta de tus servicios a tu alrededor
+                    </h3>
                     </div>
                   </div>
                 </div>
@@ -133,35 +125,36 @@
           </div>
         </div>
       </div>
+    </div>
 
 
-      <!-- The core Firebase JS SDK is always required and must be listed first -->
-      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
 
-      <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
 
-      <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          apiKey: "AIzaSyAsyIVFlKWCNvgornLe0T7ezteJdWso4sQ",
-          authDomain: "buscapp-fjr.firebaseapp.com",
-          databaseURL: "https://buscapp-fjr.firebaseio.com",
-          projectId: "buscapp-fjr",
-          storageBucket: "buscapp-fjr.appspot.com",
-          messagingSenderId: "918660965633",
-          appId: "1:918660965633:web:2f13c03b2710bcc7d22700"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-      </script>
-      <script src='main.js'></script>
-      <script type="text/javascript" src="cordova.js"></script>
-      <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
-      <script type="text/javascript" src="js/my-app.js"></script>
-      <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAsyIVFlKWCNvgornLe0T7ezteJdWso4sQ",
+        authDomain: "buscapp-fjr.firebaseapp.com",
+        databaseURL: "https://buscapp-fjr.firebaseio.com",
+        projectId: "buscapp-fjr",
+        storageBucket: "buscapp-fjr.appspot.com",
+        messagingSenderId: "918660965633",
+        appId: "1:918660965633:web:2f13c03b2710bcc7d22700"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src='main.js'></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
 </body>
 

@@ -1,114 +1,86 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
 <div class="page" data-name="registro">
-    <div class="panel panel-left panel-reveal panel-resizable panel-init">
-        <div class="block">
-            <h3>Bienvenido</h3>
-            <div>
-                <p class="row">
-                    <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
-                </p>
-            </div>
-            <div>
-                <p class="row">
-                    <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
-                </p>
-                <div>
-                    <ul>
-                        <span class="h2">Modo oscuro</span>
-                        <label class="toggle toggle-init color-blue">
-                            <input type="checkbox" checked>
-                            <span class="toggle-icon"></span>
-                        </label>
-                    </ul>
-                </div>
-                <div>
-                    <p><a class="panel-close" href="#">Cerrar</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="navbar">
-        <div class="navbar-bg"></div>
-        <div class="navbar-inner">
-            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
-            <div class="title centro">BuscAPP</div>
-            <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
-        </div>
-    </div>
-    <div class="page-content">
-       
-        <div class="block-title centro margen h2">Completá tus datos</div>
-        <div class="list inline-labels no-hairlines-md">
+  <div class="panel panel-left panel-reveal panel-resizable panel-init">
+    <div class="block">
+      <h3>Bienvenido</h3>
+      <div>
+        <p class="row">
+          <a href="/index/" class="col button button-large button-raised button-fill">Home</a>
+        </p>
+      </div>
+      <div>
+        <p class="row">
+          <a href="/login/" class="col button button-large button-raised button-fill">Ingresar</a>
+        </p>
+        <div>
           <ul>
-            <ul class="item-content item-input">
-              <div class="item-media">
-                <i class="icon demo-list-icon"></i>
-              </div>
-              <div class="item-inner">
-                <div class="item-input-wrap">
-                  <input type="text" id="nombre" placeholder="Nombre">
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </ul>
-            <ul class="item-content item-input">
-              <div class="item-media">
-                <i class="icon demo-list-icon"></i>
-              </div>
-              <div class="item-inner">
-                <div class="item-input-wrap">
-                  <input type="text" id="apellido" placeholder="Apellido">
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </ul>
-            <ul class="item-content item-input">
-                <div class="item-media">
-                  <i class="icon demo-list-icon"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-input-wrap">
-                    <input type="email" id="emailReg" placeholder="E-mail">
-                    <span class="input-clear-button"></span>
-                  </div>
-                </div>
-              </ul>
-              <ul class="item-content item-input">
-                <div class="item-media">
-                  <i class="icon demo-list-icon"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-input-wrap">
-                    <input type="password" id="claveReg" placeholder="Password">
-                    <span class="input-clear-button"></span>
-                  </div>
-                </div>
-              </ul>
-            <ul class="item-content item-input">
-              <div class="item-media">
-                <i class="icon demo-list-icon"></i>
-              </div>
-              <div class="item-inner">
-                <div class="item-input-wrap">
-                  <input type="tel" id="tel" placeholder="Tel">
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </ul>           
+            <span class="h2">Modo oscuro</span>
+            <label class="toggle toggle-init color-blue">
+              <input type="checkbox" checked>
+              <span class="toggle-icon"></span>
+            </label>
           </ul>
         </div>
-
-        <div class="row">
-            <div class="col"> </div>
-            <div class="col"><a href="#" class="button button-round button-fill" id="guardar">Aceptar</a></div>
-            <div class="col"> </div>
+        <div>
+          <p><a class="panel-close" href="#">Cerrar</a></p>
         </div>
-
-        <div class="row">
-          <div class="col"> </div>
-          <div class="col"><a href="#" class="button button-round button-fill" id="prueba">prueba</a></div>
-          <div class="col"> </div>
       </div>
-
     </div>
+  </div>
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner">
+      <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons">menu</i></div>
+      <div class="title centro">BuscAPP</div>
+      <!--<link class="right" rel="icon" type="image/png" href="/imagenes/pngocean.com (2) (1).png" /> -->
+    </div>
+  </div>
+  <div class="page-content">
+
+    <div class="block-title centro margen h2">Completá tus datos</div>
+    <div class="list inline-labels no-hairlines-md">
+      <form class="list" id="my-form">
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Nombre</div>
+            <div class="item-input-wrap">
+              <input type="text" placeholder="Your name">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">E-mail</div>
+            <div class="item-input-wrap">
+              <input type="email" placeholder="Email" id="regEmail">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Contraseña</div>
+            <div class="item-input-wrap">
+              <input type="password" placeholder="Contraseña" id="regClave">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col"> </div>
+      <div class="col"><a href="#" class="button button-round button-fill" id="guardar">Aceptar</a></div>
+      <div class="col"> </div>
+    </div>
+
+    <div class="row">
+      <div class="col"> </div>
+      <div class="col"><a href="#" class="button button-round button-fill" id="prueba">prueba</a></div>
+      <div class="col"> </div>
+    </div>
+
+  </div>
 </div>

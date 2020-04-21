@@ -42,7 +42,8 @@
 
     $$('.tocaBoton').on('click', fnTocaBoton);
 
-
+    $$('#ingresar').on('click', fnOcultaPanel);
+    $$('#home').on('click', fnOcultaPanel);
   });
 
   /* // Initialize the platform object:
@@ -71,22 +72,32 @@ var map = new H.Map(
     console.log(e);
 
     $$('#modoOscuro').on('click', fnModoOscuro);
-
   })
 
+
+  $$(document).on('page:init', '.page[data-name="index"]', function (e) {
+    // Do something here when page with data-name="about" attribute loaded and initialized
+
+    $$('#ingresar').on('click', fnOcultaPanel);
+    $$('#home').on('click', fnOcultaPanel);
+
+  })
   // Option 2. Using live 'page:init' event handlers for each page
   $$(document).on('page:init', '.page[data-name="registro"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#guardar').on('click', fnRegistro);
+    $$('#ingresar').on('click', fnOcultaPanel);
+    $$('#home').on('click', fnOcultaPanel);
 
-    $$('#prueba').on('click', fnPruebaUsuario);
   })
 
   $$(document).on('page:init', '.page[data-name="login"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#login').on('click', fnLogin);
+    $$('#ingresar').on('click', fnOcultaPanel);
+    $$('#home').on('click', fnOcultaPanel);
 
   })
 
@@ -124,73 +135,48 @@ var map = new H.Map(
   }
 
   function fnRegistro() {
-
     var huboError = 0;
-
-    var email = $$('#emailReg').val();
-    var clave = $$('#claveReg').val();
-
-    alert('mail: ' + email);
-    alert('pass: ' + clave);
+    var email = $$('#regEmail').val();
+    var clave = $$('#regClave').val();
+    // alert('mail: ' + email);
+    // alert('pass: ' + clave);
     firebase.auth().createUserWithEmailAndPassword(email, clave)
       .catch(function (error) {
         huboError = 1;
-
         console.log(error.code);
         console.log(error.message);
-
         alert('error')
       })
       .then(function () {
         if (huboError == 0) {
           alert('OK');
-          // lo seteo en el panel.... contenedor lblEmail
-          // $$('#lblEmail').text(elMail);   // es una etiqueta html. Text va sin formato
-          // mainView.router.navigate("/datospersonales/");
+          mainView.router.navigate("/index/");
         }
       });
   }
-
-  function fnPruebaUsuario() {
-
-    alert('Entro en fnPruebaUsuario');
-
-    // pruebo registro de usuario en firebase.
-    var email = "otro@lkjhslkjahlkahsd.com";
-    var password = "wertyuijnas";
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .catch(function (error) {
-        // Handle Errors here.
-        alert('error')
-      });
-  }
-
 
   function fnLogin() {
 
     var huboError = 0;
-
     var email = $$('#email').val();
     var clave = $$('#clave').val();
-
-    alert('mail: ' + email);
-    alert('pass: ' + clave);
+    // alert('mail: ' + email);
+    // alert('pass: ' + clave);
     firebase.auth().signInWithEmailAndPassword(email, clave)
       .catch(function (error) {
         huboError = 1;
-
         console.log(error.code);
         console.log(error.message);
-
         alert('error')
       })
       .then(function () {
         if (huboError == 0) {
           alert('OK');
-          // lo seteo en el panel.... contenedor lblEmail
-          // $$('#lblEmail').text(elMail);   // es una etiqueta html. Text va sin formato
-          // mainView.router.navigate("/datospersonales/");
+          mainView.router.navigate("/index/");
         }
       });
+  }
+
+  function fnOcultaPanel(){
+    app.panel.close();
   }
