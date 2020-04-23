@@ -38,8 +38,11 @@
   });
 
   var mainView = app.views.create('.view-main');
+  var db = firebase.firestore();
+  var usuariosRef = db.collection("usuarios");
 
-  var lat=0,lon=0;
+  var lat = 0,
+    lon = 0;
 
   // Option 1. Using one 'page:init' handler for all pages
   $$(document).on('page:init', function (e) {
@@ -70,24 +73,6 @@
 
   });
 
-  /* // Initialize the platform object:
- var platform = new H.service.Platform({
-  'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
-});
-
-// Obtain the default map types from the platform object
-var maptypes = platform.createDefaultLayers();
-
-// Instantiate (and display) a map object:
-var map = new H.Map(
-  document.getElementById('mapContainer'),
-  maptypes.vector.normal.map,
-  {
-    zoom: 10,
-    center: { lng: -33.1167, lat: -61.3333 }
-  });
-});
-*/
 
   $$(document).on('page:init', '.page[data-name="index"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
@@ -106,32 +91,17 @@ var map = new H.Map(
 
 
   $$(document).on('page:init', '.page[data-name="camara"]', function (e) {
-  // Do something here when page with data-name="about" attribute loaded and initialized
+    // Do something here when page with data-name="about" attribute loaded and initialized
 
-  $$('#ingresar').on('click', fnOcultaPanel);
-  $$('#home').on('click', fnOcultaPanel);
+    $$('#ingresar').on('click', fnOcultaPanel);
+    $$('#home').on('click', fnOcultaPanel);
 
-  $$('#btnMap').on('click', fnPintaMap);
-  $$('#btnCam').on('click', fnPintaCam);
-   
-  // Initialize the platform object:
-  var platform = new H.service.Platform({
-    'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
-  });
-  // Obtain the default map types from the platform object
-  var maptypes = platform.createDefaultLayers();
-  // Instantiate (and display) a map object:
-  var map = new H.Map(document.getElementById('mapContainer'),maptypes.vector.normal.map, {
-    zoom: 10,
-    center: 
-    {
-      lng: -33.1167,
-      lat: -61.3333
-    }
-    });
+    $$('#btnMap').on('click', fnPintaMap);
+    $$('#btnCam').on('click', fnPintaCam);
+
+
 
   });
-
 
   // Option 2. Using live 'page:init' event handlers for each page
   $$(document).on('page:init', '.page[data-name="registro"]', function (e) {
@@ -181,21 +151,38 @@ var map = new H.Map(
     var huboError = 0;
     var email = $$('#regEmail').val();
     var clave = $$('#regClave').val();
-    // alert('mail: ' + email);
-    // alert('pass: ' + clave);
-    firebase.auth().createUserWithEmailAndPassword(email, clave)
-      .catch(function (error) {
-        huboError = 1;
-        console.log(error.code);
-        console.log(error.message);
-        alert('Error')
-      })
-      .then(function () {
-        if (huboError == 0) {
-          alert('OK');
-          mainView.router.navigate("/index/");
-        }
-      });
+    var nombre = $$('#regNombre').val();
+    if (nombre != '' || clave != '' || email != '') {
+      firebase.auth().createUserWithEmailAndPassword(email, clave)
+        .catch(function (error) {
+          huboError = 1;
+          console.log(error.code);
+          console.log(error.message);
+          switch (error.code) {
+            case 'auth/weak-password':
+              alert('Contraseña poco segura (minimo 6 caracteres)');
+              break
+            case 'auth/invalid-email':
+              alert('Correo ingresado invalido');
+              break
+            case 'auth/email-already-in-use':
+              alert('Correo ya registrado');
+              break
+          }
+        })
+        .then(function () {
+          if (huboError == 0) {
+            alert('OK');
+            $$('#setNombre').html(nombre);
+            guardaUsuario(nombre, email, clave);
+
+          }
+        });
+    } else {
+      alert('Complete todos los datos')
+    }
+
+
   }
 
   function fnLogin() {
@@ -203,21 +190,26 @@ var map = new H.Map(
     var huboError = 0;
     var email = $$('#email').val();
     var clave = $$('#clave').val();
-    // alert('mail: ' + email);
-    // alert('pass: ' + clave);
-    firebase.auth().signInWithEmailAndPassword(email, clave)
-      .catch(function (error) {
-        huboError = 1;
-        console.log(error.code);
-        console.log(error.message);
-        alert('Error')
-      })
-      .then(function () {
-        if (huboError == 0) {
-          alert('OK');
-          mainView.router.navigate("/index/");
-        }
-      });
+    if (clave != '' || email != '') {
+      firebase.auth().signInWithEmailAndPassword(email, clave)
+        .catch(function (error) {
+          huboError = 1;
+          console.log(error.code);
+          console.log(error.message);
+          alert('Error')
+        })
+        .then(function () {
+          if (huboError == 0) {
+            alert('OK');
+            $$('#ingresaPanel').addClass('oculta');
+            recuperaNombre(email);
+            mainView.router.navigate("/index/");
+          }
+        });
+    } else {
+      alert('Complete todos los datos')
+    }
+
   }
 
   function fnOcultaPanel() {
@@ -232,10 +224,72 @@ var map = new H.Map(
   function fnPintaCam() {
     $$('#btnMap').removeClass("button-fill").addClass("button-outline");
     $$('#btnCam').addClass("button-fill");
+    $$('#videoCam').removeClass('oculta').addClass('visible');
+    $$('#mapContainer').removeClass('visible').addClass('oculta');
 
   }
 
   function fnPintaMap() {
     $$('#btnCam').removeClass("button-fill").addClass("button-outline");
     $$('#btnMap').addClass("button-fill");
+    $$('#videoCam').removeClass('visible').addClass('oculta');
+    $$('#mapContainer').removeClass('oculta').addClass('visible');
+    muestramapa();
+
+  }
+
+  function muestramapa() {
+    // Initialize the platform object:
+    var platform = new H.service.Platform({
+      'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
+    });
+
+    // Obtain the default map types from the platform object
+    var maptypes = platform.createDefaultLayers();
+    //var layers =  platform.createDefaultLayers();
+    // Instantiate (and display) a map object:
+    var map = new H.Map(
+      document.getElementById('mapContainer'),
+      maptypes.vector.normal.map,
+      //layers.raster.terrain.transit
+      {
+        zoom: 15,
+        center: {
+          lng: -61.3333,
+          lat: -33.1167
+        }
+      });
+
+    // Create the default UI:
+    var ui = H.ui.UI.createDefault(map, maptypes, 'es-ES');
+  }
+
+
+  function guardaUsuario(nombre, email, clave) {
+    db.collection("usuarios").add({
+        nombre: nombre,
+        email: email,
+        password: clave
+      })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        mainView.router.navigate("/index/");
+        alert('entro y gurda en db');
+        $$('#ingresaPanel').addClass('oculta');
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  }
+
+  function recuperaNombre(mail) {
+    usuariosRef.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        if (doc.data().email == mail) {
+          alert('encontrado');
+          $$('#setNombre').html(doc.data().nombre);
+        }
+      });
+    });
   }

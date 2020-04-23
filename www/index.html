@@ -12,8 +12,16 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
 
-  <!-- <meta http-equiv="Content-Security-Policy"
-    content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline'; font-src * data: URIs ">   --> 
+  <meta http-equiv="Content-Security-Policy" content="
+          default-src   * 'self' 'unsafe-inline' 'unsafe-eval';
+          script-src    * 'self' 'unsafe-inline' 'unsafe-eval';
+          img-src       * data: blob: 'self' 'unsafe-inline' 'unsafe-eval';
+          frame-src     * 'self' 'unsafe-inline' 'unsafe-eval';
+          style-src     * 'self' 'unsafe-inline' 'unsafe-eval';
+          font-src      * data: file: URIs 'self' 'unsafe-inline' 'unsafe-eval';
+          connect-src   * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
+          worker-src    * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
+          ">
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -30,22 +38,22 @@
   <link rel="stylesheet" href="css/icons.css">
   <!-- Path to your custom app styles-->
   <link rel="stylesheet" href="css/app.css">
-  <meta name="viewport" content="initial-scale=1.0,width=device-width" />
-  <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
   <div id="app">
     <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
+      <div class="fondoPanel">
+        <h2 id="setNombre">Nombre</h2>
+      </div>
       <div class="block">
-        <h2 class="centro">Bienvenido</h2>
+        <!--<h2 class="centro">Bienvenido</h2> -->
         <div class="list links-list">
           <ul>
             <li><a href="/index/" id="home">Home</a></li>
           </ul>
           <ul>
-            <li><a href="/login/" id="ingresar">Ingresar</a></li>
+            <li id="ingresaPanel"><a href="/login/" id="ingresar">Ingresar</a></li>
           </ul>
         </div>
         <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
@@ -63,7 +71,7 @@
         <!-- Top Navbar -->
         <div class="navbar">
           <div class="navbar-bg"></div>
-          <div class="navbar-inner navbar">
+          <div class="navbar-inner navBar">
             <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
             <div class="title">BuscAPP</div>
             <img src="" alt="logo" class="right margenDerecho">
@@ -72,9 +80,9 @@
 
         <!-- Toolbar -->
         <div class="toolbar toolbar-bottom">
-          <div class="toolbar-inner navbar">
+          <div class="toolbar-inner">
             <!-- Toolbar links -->
-            <a href="#" data-popup=".my-popup" class="popup-open centro h2">Ayuda</a>
+            <a class="button sheet-open centro h2" href="#" data-sheet=".my-sheet-swipe-to-close">Ayuda</a>
           </div>
         </div>
 
@@ -85,7 +93,7 @@
 
               <div class="col-50 centro">
                 <div class="card cuadrado bar">
-                  <h2>Bares</h2>
+                  <h2> Bares </h2>
                 </div>
                 <div class="card cuadrado verduleria">
                   <h2>Verdulerias</h2>
@@ -97,7 +105,7 @@
 
               <div class="col-50 centro">
                 <div class="card cuadrado ypf">
-                  <h2>Estaciones de conbustible</h2>
+                  <h2>Estaciones de combustible</h2>
                 </div>
                 <div class="card cuadrado banco">
                   <h2>Cajeros automaticos</h2>
@@ -108,38 +116,26 @@
               </div>
             </div>
 
-            <!-- EL POPUP:
-                    - Ver que la relacion se propude con la clase .my-popup
-                    - El o los elementos que lo abren tienen la clase .popup-open y abrirá el popup definido en data-popup
-                    - El o los elementos que lo cierren tienen la clase popup-close y se cerrará a sí mismo. 
-          
-                  -->
-            <div class="popup my-popup">
-              <div class="view">
-                <div class="page">
-                  <div class="navbar">
-                    <div class="navbar-bg"></div>
-                    <div class="navbar-inner">
-                      <div class="title">Ayuda</div>
-                      <div class="right">
-                        <!-- Link to close popup -->
-                        <a class="link popup-close">Cerrar</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="page-content txt col">
-                    <h3>
-                      BuscAPP es una excelente herramienta desarrollada para brindar a todo usuario que quiere saber
-                      de los servicios que se encuentran a su alrededor de una manera muy autodidacta.
-                      Encuentra todos esos lugares que necesites de la manera más fácil, solamente apuntando tu
-                      móvil a tus alrededores descubrirás todos tus servicios.
-                      <br>
-                      1. Selecciona una categoria
-                      <br>
-                      2. Sostén el movil a la altura de tus ojos
-                      <br>
-                      3. Disfruta de tus servicios a tu alrededor
-                    </h3>
+            <!-- Swipe to close sheet -->
+            <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+              <div class="sheet-modal-inner">
+                <div class="page-content">
+                  <div class="block-title block-title-large">Ayuda!</div>
+                  <div class="block">
+                    <p class="txt col">
+                      <h3>
+                        BuscAPP es una excelente herramienta desarrollada para brindar a todo usuario que quiere saber
+                        de los servicios que se encuentran a su alrededor de una manera muy autodidacta.
+                        Encuentra todos esos lugares que necesites de la manera más fácil, solamente apuntando tu
+                        móvil a tus alrededores descubrirás todos tus servicios.
+                        <br>
+                        1. Selecciona una categoria
+                        <br>
+                        2. Sostén el movil a la altura de tus ojos
+                        <br>
+                        3. Disfruta de tus servicios a tu alrededor
+                      </h3>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -179,6 +175,7 @@
     <script type="text/javascript" src="js/my-app.js"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>

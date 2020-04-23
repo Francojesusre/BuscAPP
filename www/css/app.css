@@ -57,10 +57,9 @@
 .categorias{
     width: 100vw;
     height: 83.5vh;
-    background-color: rgb(39, 32, 48);
 }
 .largo{
-    height: 87vh;
+    height: 83.5vh;
     margin: auto;
 }
 .cuadrado{
@@ -173,11 +172,35 @@
     -webkit-text-stroke: 0.4px black;
     font-size: 26px;
 }
-
-.navbar{
-    background-color: rgb(92, 92, 92);
-}
-
 .activo{
     background-color: rgb(29, 79, 187);
+}
+
+.visible{
+    display: block;
+    visibility: visible;
+}
+.oculta{
+    display: none;
+    visibility: hidden;
+}
+
+.fondoPanel{
+    width: 100vw;
+    height: 20vh;
+    background-image: url(../imagenes/fondo.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+#setNombre{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 0;
+    color: white;
+}
+
+.navBar{
+    background-color: teal;
 }
