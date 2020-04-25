@@ -8,6 +8,8 @@
     }
   },
   "dependencies": {
+    "com.wikitude.phonegap.wikitudeplugin": "9.0.0",
+    "cordova-plugin-ar": "0.1.0-alpha1",
     "cordova-plugin-geolocation": "4.0.2"
   }
 }

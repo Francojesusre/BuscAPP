@@ -32,6 +32,10 @@
       {
         path: '/camara/',
         url: 'camara.html',
+      },
+      {
+        path: '/servicios/',
+        url: 'servicios.html',
       }
     ]
     // ... other parameters
@@ -100,6 +104,12 @@
     $$('#btnCam').on('click', fnPintaCam);
 
 
+    $$('#prueba').on('click', function () {
+      mainView.router.navigate("/servicios/");
+
+
+      geoAR();
+    })
 
   });
 
@@ -181,8 +191,6 @@
     } else {
       alert('Complete todos los datos')
     }
-
-
   }
 
   function fnLogin() {
@@ -220,7 +228,6 @@
     mainView.router.navigate("/camara/");
   }
 
-
   function fnPintaCam() {
     $$('#btnMap').removeClass("button-fill").addClass("button-outline");
     $$('#btnCam').addClass("button-fill");
@@ -238,7 +245,7 @@
 
   }
 
-  function muestramapa() {
+  function muestramapa() { //no me funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     // Initialize the platform object:
     var platform = new H.service.Platform({
       'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
@@ -264,7 +271,6 @@
     var ui = H.ui.UI.createDefault(map, maptypes, 'es-ES');
   }
 
-
   function guardaUsuario(nombre, email, clave) {
     db.collection("usuarios").add({
         nombre: nombre,
@@ -273,9 +279,9 @@
       })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
-        mainView.router.navigate("/index/");
         alert('entro y gurda en db');
         $$('#ingresaPanel').addClass('oculta');
+        mainView.router.navigate("/index/");
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
@@ -292,4 +298,52 @@
         }
       });
     });
+  }
+
+
+  function geoAR() {
+
+    new AR.InstantTracker({
+      smartEnabled: false
+  });
+
+  AR.hardware.smart.onPlatformAssistedTrackingAvailabilityChanged = function(availability) {
+    switch(availability) {
+        case AR.hardware.smart.SmartAvailability.INDETERMINATE_QUERY_FAILED:
+            /* query failed for some reason; try again or accept the fact. */
+            World.showUserInstructions("Could not determine if platform assisted tracking is supported.<br>Running without platform assisted tracking (ARKit or ARCore).");
+            World.createOverlays();
+            break;
+        case AR.hardware.smart.SmartAvailability.CHECKING_QUERY_ONGOING:
+            /* query currently ongoing; be patient and do nothing or inform the user about the ongoing process */
+            break;
+        case AR.hardware.smart.SmartAvailability.UNSUPPORTED:
+            /* not supported, create the scene now without platform assisted tracking enabled */
+            World.showUserInstructions("Running without platform assisted tracking (ARKit or ARCore).");
+            World.createOverlays();
+            break;
+        case AR.hardware.smart.SmartAvailability.SUPPORTED_UPDATE_REQUIRED:
+        case AR.hardware.smart.SmartAvailability.SUPPORTED:
+            /* supported, create the scene now with platform assisted tracking enabled * * SUPPORTED_UPDATE_REQUIRED may be followed by SUPPORTED, make sure not to * create the scene twice */
+            World.platformAssisstedTrackingSupported = true;
+            if (!World.createOverlaysCalled) {
+                World.showUserInstructions("Running with platform assisted tracking(ARKit or ARCore). <br> Move your phone around until the crosshair turns green, which is when you can start tracking.");
+                World.createOverlays();
+                World.createOverlaysCalled = true;
+            }
+            break;
+    }
+};
+
+this.tracker = new AR.InstantTracker();
+
+this.tracker = new AR.InstantTracker({
+  onChangedState:  function onChangedStateFn(state) {
+  },
+  deviceHeight: 1.0
+});
+
+
+
+
   }
