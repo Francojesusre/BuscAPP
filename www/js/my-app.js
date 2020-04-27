@@ -36,6 +36,10 @@
       {
         path: '/servicios/',
         url: 'servicios.html',
+      },
+      {
+        path: '/local/',
+        url: 'local.html',
       }
     ]
     // ... other parameters
@@ -91,6 +95,11 @@
     $$('.super').on('click', fnVisor);
     $$('.banco').on('click', fnVisor);
 
+
+    $$('#nav').on('click', function(){
+      mainView.router.navigate("/local/");
+    })
+
   })
 
 
@@ -106,11 +115,10 @@
 
     $$('#prueba').on('click', function () {
       mainView.router.navigate("/servicios/");
-
-
-      geoAR();
     })
 
+
+    geo();
   });
 
   // Option 2. Using live 'page:init' event handlers for each page
@@ -300,50 +308,62 @@
     });
   }
 
+  function geo(){
+    alert('saddassd')
+    var app = { 
 
-  function geoAR() {
-
-    new AR.InstantTracker({
-      smartEnabled: false
-  });
-
-  AR.hardware.smart.onPlatformAssistedTrackingAvailabilityChanged = function(availability) {
-    switch(availability) {
-        case AR.hardware.smart.SmartAvailability.INDETERMINATE_QUERY_FAILED:
-            /* query failed for some reason; try again or accept the fact. */
-            World.showUserInstructions("Could not determine if platform assisted tracking is supported.<br>Running without platform assisted tracking (ARKit or ARCore).");
-            World.createOverlays();
-            break;
-        case AR.hardware.smart.SmartAvailability.CHECKING_QUERY_ONGOING:
-            /* query currently ongoing; be patient and do nothing or inform the user about the ongoing process */
-            break;
-        case AR.hardware.smart.SmartAvailability.UNSUPPORTED:
-            /* not supported, create the scene now without platform assisted tracking enabled */
-            World.showUserInstructions("Running without platform assisted tracking (ARKit or ARCore).");
-            World.createOverlays();
-            break;
-        case AR.hardware.smart.SmartAvailability.SUPPORTED_UPDATE_REQUIRED:
-        case AR.hardware.smart.SmartAvailability.SUPPORTED:
-            /* supported, create the scene now with platform assisted tracking enabled * * SUPPORTED_UPDATE_REQUIRED may be followed by SUPPORTED, make sure not to * create the scene twice */
-            World.platformAssisstedTrackingSupported = true;
-            if (!World.createOverlaysCalled) {
-                World.showUserInstructions("Running with platform assisted tracking(ARKit or ARCore). <br> Move your phone around until the crosshair turns green, which is when you can start tracking.");
-                World.createOverlays();
-                World.createOverlaysCalled = true;
-            }
-            break;
-    }
-};
-
-this.tracker = new AR.InstantTracker();
-
-this.tracker = new AR.InstantTracker({
-  onChangedState:  function onChangedStateFn(state) {
-  },
-  deviceHeight: 1.0
-});
-
-
+      // Url / Path a la experiencia de realidad aumentada que le gustaría cargar
+       arExperienceUrl: "www / geo / index.html" , 
+      // Las características que requiere su experiencia de realidad aumentada, solo defina las que realmente necesita
+       requiredFeatures: [ "2d_tracking" , "geo" ], 
+      // Representa la capacidad del dispositivo de lanzar experiencias de realidad aumentada con características específicas
+       isDeviceSupported: false ,
+      // Configuración de inicio adicional, por ahora la única configuración disponible es camera_position (back | front)
+       startupConfiguration: 
+      { 
+          "camera_position" : "back"
+       }, 
+      // Application Constructor
+       initialize: function () { 
+          this .bindEvents (); 
+      }, 
+      // Vincula los oyentes de eventos 
+      // 
+      // Vincula los eventos que se requieren al inicio. Los eventos comunes son: 
+      // 'load', 'deviceready', 'offline' y 'online'. 
+      bindEvents: function () { 
+          document.addEventListener ( 'deviceready' , this .onDeviceReady, false);
+      },
+      // Deviceready Event Handler
+       onDeviceReady: function () { 
+          app.wikitudePlugin = cordova.require ( "com.wikitude.phonegap.WikitudePlugin.WikitudePlugin" ); 
+          app.wikitudePlugin.isDeviceSupported (app.onDeviceSupported, app.onDeviceNotSupported, app.requiredFeatures); 
+      }, 
+      // Devolución de llamada si el dispositivo admite todas las características requeridas
+       enDeviceSupported: function () { 
+          app.wikitudePlugin.loadARchitectWorld ( 
+              app.onARExperienceLoadedSuccessful, 
+              app.onARExperienceLoadError, 
+              app.arExperienceUrl, 
+              app.requiredFeatures,
+              app.startupConfiguration 
+          ); 
+      }, 
+      // Devolución de llamada si el dispositivo no es compatible con todas las características requeridas
+       onDeviceNotSupported: function (errorMessage) { 
+          alert (errorMessage + "no soporta"); 
+      }, 
+      // Devolución de llamada si su experiencia AR se cargó correctamente en
+       ARARExperienceLoadedSuccessful: function (loadedURL) { 
+          / * Responda a la carga exitosa de experiencia de realidad aumentada si necesita * /
+       }, 
+      // Devolución de llamada si su experiencia AR no se cargó exitosamente en
+       ARExperienceLoadError: function ( errorMessage) { 
+          alert ( ' Error al cargar la vista web AR:' + errorMessage); 
+      }
+  
+  }; 
+  app.initialize ();
 
 
   }
