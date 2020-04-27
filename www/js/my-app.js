@@ -37,10 +37,6 @@
         path: '/servicios/',
         url: 'servicios.html',
       },
-      {
-        path: '/local/',
-        url: 'local.html',
-      }
     ]
     // ... other parameters
   });
@@ -72,15 +68,14 @@
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
 
-    $$('.bar').on('click', fnVisor);
-    $$('.verduleria').on('click', fnVisor);
-    $$('.casino').on('click', fnVisor);
-    $$('.ypf').on('click', fnVisor);
-    $$('.super').on('click', fnVisor);
-    $$('.banco').on('click', fnVisor);
+    $$('.bar').on('click', geoAR);
+    $$('.verduleria').on('click', geoAR);
+    $$('.casino').on('click', geoAR);
+    $$('.ypf').on('click', geoAR);
+    $$('.super').on('click', geoAR);
+    $$('.banco').on('click', geoAR);
 
   });
-
 
   $$(document).on('page:init', '.page[data-name="index"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
@@ -88,17 +83,12 @@
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
 
-    $$('.bar').on('click', fnVisor);
-    $$('.verduleria').on('click', fnVisor);
-    $$('.casino').on('click', fnVisor);
-    $$('.ypf').on('click', fnVisor);
-    $$('.super').on('click', fnVisor);
-    $$('.banco').on('click', fnVisor);
-
-
-    $$('#nav').on('click', function(){
-      mainView.router.navigate("/local/");
-    })
+    $$('.bar').on('click', geoAR);
+    $$('.verduleria').on('click', geoAR);
+    $$('.casino').on('click', geoAR);
+    $$('.ypf').on('click', geoAR);
+    $$('.super').on('click', geoAR);
+    $$('.banco').on('click', geoAR);
 
   })
 
@@ -117,8 +107,6 @@
       mainView.router.navigate("/servicios/");
     })
 
-
-    geo();
   });
 
   // Option 2. Using live 'page:init' event handlers for each page
@@ -308,62 +296,6 @@
     });
   }
 
-  function geo(){
-    alert('saddassd')
-    var app = { 
-
-      // Url / Path a la experiencia de realidad aumentada que le gustaría cargar
-       arExperienceUrl: "www / geo / index.html" , 
-      // Las características que requiere su experiencia de realidad aumentada, solo defina las que realmente necesita
-       requiredFeatures: [ "2d_tracking" , "geo" ], 
-      // Representa la capacidad del dispositivo de lanzar experiencias de realidad aumentada con características específicas
-       isDeviceSupported: false ,
-      // Configuración de inicio adicional, por ahora la única configuración disponible es camera_position (back | front)
-       startupConfiguration: 
-      { 
-          "camera_position" : "back"
-       }, 
-      // Application Constructor
-       initialize: function () { 
-          this .bindEvents (); 
-      }, 
-      // Vincula los oyentes de eventos 
-      // 
-      // Vincula los eventos que se requieren al inicio. Los eventos comunes son: 
-      // 'load', 'deviceready', 'offline' y 'online'. 
-      bindEvents: function () { 
-          document.addEventListener ( 'deviceready' , this .onDeviceReady, false);
-      },
-      // Deviceready Event Handler
-       onDeviceReady: function () { 
-          app.wikitudePlugin = cordova.require ( "com.wikitude.phonegap.WikitudePlugin.WikitudePlugin" ); 
-          app.wikitudePlugin.isDeviceSupported (app.onDeviceSupported, app.onDeviceNotSupported, app.requiredFeatures); 
-      }, 
-      // Devolución de llamada si el dispositivo admite todas las características requeridas
-       enDeviceSupported: function () { 
-          app.wikitudePlugin.loadARchitectWorld ( 
-              app.onARExperienceLoadedSuccessful, 
-              app.onARExperienceLoadError, 
-              app.arExperienceUrl, 
-              app.requiredFeatures,
-              app.startupConfiguration 
-          ); 
-      }, 
-      // Devolución de llamada si el dispositivo no es compatible con todas las características requeridas
-       onDeviceNotSupported: function (errorMessage) { 
-          alert (errorMessage + "no soporta"); 
-      }, 
-      // Devolución de llamada si su experiencia AR se cargó correctamente en
-       ARARExperienceLoadedSuccessful: function (loadedURL) { 
-          / * Responda a la carga exitosa de experiencia de realidad aumentada si necesita * /
-       }, 
-      // Devolución de llamada si su experiencia AR no se cargó exitosamente en
-       ARExperienceLoadError: function ( errorMessage) { 
-          alert ( ' Error al cargar la vista web AR:' + errorMessage); 
-      }
-  
-  }; 
-  app.initialize ();
-
-
+  function geoAR(){
+    app.loadARchitectWorld(getSamplePath(0, 0))
   }
