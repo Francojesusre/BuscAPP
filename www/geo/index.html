@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
     <!--  basic meta information -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
@@ -10,13 +9,13 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 
-    <title>My ARchitect World</title>
+    <title>BuscAPP</title>
 
     <script src="https://www.wikitude.com/libs/architect.js"></script>
     <script src="../ade.js"></script>
 
-    <!-- important for static POI loading - include the static data  -->
-    <script type="text/javascript" src="js/myjsondata.js"></script>
+    <!-- important for static POI loading - include the static data  
+    <script type="text/javascript" src="js/myjsondata.js"></script>-->
 
     <!-- positioning of poi-radar -->
     <link rel="stylesheet" href="css/poi-radar.css" />
@@ -35,11 +34,7 @@
     <script type="text/javascript" src="js/marker.js"></script>
 
     <!-- World logic-->
-    <script type="text/javascript" src="js/fromlocalresource.js"></script>
-
-
-    <!-- World logic-->
-    <script type="text/javascript" src="js/addingradar.js"></script>
+    <script type="text/javascript" src="js/world.js"></script>
 
     <!-- radar component -->
     <script type="text/javascript" src="js/radar.js"></script>
@@ -49,7 +44,16 @@
 <body>
     <div data-role="page" id="page1" style="background: none;">
         <!-- MAIN PAGE CONTENT -->
+        <!-- header of UI holding feature buttons -->
+        <div id="header-status" data-role="header" data-position="fixed" data-theme="c">
+            <a href="javascript: World.showRange();" data-icon="gear" data-inline="true" data-mini="true">Rango</a>
+            <h1></h1>
+        </div>
 
+        <!-- the radar div - Wikitude SDK radar will be drawn into this div -->
+        <div class="radarContainer_left" id="radarContainer"></div>
+
+        <!-- the radar div - Wikitude SDK radar will be drawn into this div -->
         <div class="radarContainer_left" id="radarContainer"></div>
 
         <!-- transparent footer-->
@@ -62,7 +66,66 @@
 
             <!-- popup displayed when button clicked -->
             <div data-role="popup" id="popupInfo" class="ui-content" data-theme="e" style="max-width:350px;">
-                <p style="text-align:right;" id="status-message">Trying to find out where you are</p>
+                <p style="text-align:right;" id="status-message">No se pudo establecer tu localización</p>
+            </div>
+
+        </div>
+
+
+        <!-- PANELS, ONLY VISIBLE ON DEMAND -->
+
+        <!-- panel containing POI detail information -->
+        <div data-role="panel" id="panel-poidetail" data-position="right" data-display="overlay"
+            style="background-color:#F0F0F0;" data-theme="c">
+
+            <!-- header with "close" button -->
+            <div data-role="header" data-theme="c">
+                <h1>Detalles</h1>
+                <a href="#header" data-rel="close">Cerrar</a>
+            </div>
+
+            <!-- content of POI detail page, you may also add thumbnails etc. here if you like -->
+            <div data-role="content">
+
+                <!-- title -->
+                <h3 id="poi-detail-title"></h3>
+
+                <!-- description -->
+                <h4 id="poi-detail-description"></h4>
+
+                <!-- distance -->
+                <h4>Distancia: <a id="poi-detail-distance"></a></h4>
+
+                <!-- more button-->
+                <a href="javascript: World.onPoiDetailMoreButtonClicked();" data-role="button" data-icon="arrow-r"
+                    data-iconpos="right" data-inline="true">Mas info</a>
+
+            </div>
+        </div>
+
+
+        <!-- range panel -->
+        <div data-role="panel" id="panel-distance" data-position="left" data-display="overlay"
+            style="background-color:#F0F0F0;" data-theme="c">
+
+            <!-- header with close button -->
+            <div data-role="header" data-theme="c">
+                <h1>Rango</h1>
+                <a href="#header" data-rel="close">Cerrar</a>
+            </div>
+
+            <!-- distance information, calculated/updated in code  -->
+            <div data-role="content">
+
+                <!-- Range in m/km-->
+                <h4> Rango: <a id="panel-distance-value"></a></h4>
+
+                <!-- Amount of visible places -->
+                <h4> Visibles: <a id="panel-distance-places"></a></h4>
+
+                <!-- default slider -->
+                <input id="panel-distance-range" type="range" data-highlight="true" name="rangeSlider" min="0" max="100"
+                    value="100" data-show-value="false" step="5" data-popup-enabled="false" readonly="readonly">
             </div>
         </div>
     </div>

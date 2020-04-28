@@ -57,6 +57,8 @@
       app.dialog.close();
     }, 200);
 
+
+
   });
 
   // Handle Cordova Device Ready Event

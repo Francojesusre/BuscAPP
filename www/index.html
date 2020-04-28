@@ -21,8 +21,9 @@
           font-src      * data: file: URIs 'self' 'unsafe-inline' 'unsafe-eval';
           connect-src   * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
           worker-src    * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
-          ">--> 
-          <meta http-equiv="Content-Security-Policy" content="default-src * gap:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+          ">-->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src * gap:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -169,7 +170,6 @@
       firebase.initializeApp(firebaseConfig);
     </script>
 
-    <!-- <script src='main.js'></script> -->  
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
@@ -177,14 +177,12 @@
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
 
-    <script src="geo/js/fronlocalresource.js"></script>
-    <script src="geo/js/marker.js"></script>
-    <script src="geo/js/myjsondata.js"></script>
+    <!-- Wikitude - GeoAR -->
     <script type="text/javascript" src="js/sampleIndices.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
       app.initialize();
-  </script>
+    </script>
 
 </body>
 
