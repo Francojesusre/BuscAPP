@@ -1,7 +1,7 @@
   // If we need to use custom DOM library, let's save it to $$ variable:
   var $$ = Dom7;
 
-  var app = new Framework7({
+  var appF7 = new Framework7({
     // App root element
     root: '#app',
     // App Name
@@ -20,7 +20,7 @@
       {
         path: '/login/',
         url: 'login.html',
-      }, ,
+      }, 
       {
         path: '/index/',
         url: 'index.html',
@@ -37,27 +37,26 @@
         path: '/servicios/',
         url: 'servicios.html',
       },
+      {
+        path: '/regServicios/',
+        url: 'regServicios.html',
+      },
     ]
-    // ... other parameters
   });
 
-  var mainView = app.views.create('.view-main');
+  var mainView = appF7.views.create('.view-main');
   var db = firebase.firestore();
   var usuariosRef = db.collection("usuarios");
+  var tipo = '';
 
   var lat = 0,
     lon = 0;
+    var latitud=0;
+    var longitud=0;
 
   // Option 1. Using one 'page:init' handler for all pages
   $$(document).on('page:init', function (e) {
     // Do something here when page loaded and initialized
-    console.log(e);
-    app.dialog.preloader('My text...');
-    setTimeout(function () {
-      app.dialog.close();
-    }, 200);
-
-
 
   });
 
@@ -69,6 +68,7 @@
 
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
+    $$('#addServicio').on('click', fnOcultaPanel);
 
     $$('.bar').on('click', geoAR);
     $$('.verduleria').on('click', geoAR);
@@ -76,6 +76,7 @@
     $$('.ypf').on('click', geoAR);
     $$('.super').on('click', geoAR);
     $$('.banco').on('click', geoAR);
+
 
   });
 
@@ -84,6 +85,7 @@
 
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
+    $$('#addServicio').on('click', fnOcultaPanel);
 
     $$('.bar').on('click', geoAR);
     $$('.verduleria').on('click', geoAR);
@@ -91,6 +93,7 @@
     $$('.ypf').on('click', geoAR);
     $$('.super').on('click', geoAR);
     $$('.banco').on('click', geoAR);
+
 
   })
 
@@ -127,6 +130,15 @@
     $$('#login').on('click', fnLogin);
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
+
+  });
+  $$(document).on('page:init', '.page[data-name="regServicios"]', function (e) {
+    // Do something here when page with data-name="about" attribute loaded and initialized
+
+    $$('#ingresar').on('click', fnOcultaPanel);
+    $$('#home').on('click', fnOcultaPanel)
+
+    $$('#guardaServi').on('click', fnGuardaServicio);
 
   })
 
@@ -219,28 +231,7 @@
   }
 
   function fnOcultaPanel() {
-    app.panel.close();
-  }
-
-  function fnVisor() {
-    mainView.router.navigate("/camara/");
-  }
-
-  function fnPintaCam() {
-    $$('#btnMap').removeClass("button-fill").addClass("button-outline");
-    $$('#btnCam').addClass("button-fill");
-    $$('#videoCam').removeClass('oculta').addClass('visible');
-    $$('#mapContainer').removeClass('visible').addClass('oculta');
-
-  }
-
-  function fnPintaMap() {
-    $$('#btnCam').removeClass("button-fill").addClass("button-outline");
-    $$('#btnMap').addClass("button-fill");
-    $$('#videoCam').removeClass('visible').addClass('oculta');
-    $$('#mapContainer').removeClass('oculta').addClass('visible');
-    muestramapa();
-
+    appF7.panel.close();
   }
 
   function muestramapa() { //no me funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -298,6 +289,62 @@
     });
   }
 
-  function geoAR(){
+  function geoAR() { 
     app.loadARchitectWorld(getSamplePath(0, 0))
   }
+
+  function fnGuardaServicio() {
+    console.log('entro')
+    var nombreserv = $$('#nombreServi').val();
+    var provserv = $$('#provServi').val();
+    var cityserv = $$('#cityServi').val();
+    var calleserv = $$('#calleServi').val();
+    var numserv = $$('#numServi').val();
+    var descripserv = $$('#descripServi').val();
+    var tiposerv = $$('#tipoServi').val();
+    latlong(provserv, cityserv, calleserv, numserv);
+    if (nombreserv != '' || provserv != '' || cityserv != '' || calleserv != '' || numserv != '' || descripserv != '' || tiposerv != '' || latitud != '' || longitud != '') {
+      db.collection("servicios").add({
+          nombre: nombreserv,
+          provincia: provserv,
+          ciudad: cityserv,
+          calle: calleserv,
+          numero: numserv,
+          descripcion: descripserv,
+          tipo: tiposerv,
+          lat: latitud,
+          long: longitud,
+        })
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          alert('entro y guardo en db');
+          mainView.router.navigate("/index/");
+        })
+        .catch(function (error) {
+          console.error("Error: ", error);
+        });
+    } else {
+      alert('Complete todos los datos')
+    }
+  }
+
+  
+  function latlong(prov, city, calle, num) {
+    // GEOCODER ES UN SERVICIO DE REST
+    url = 'https://geocoder.ls.hereapi.com/6.2/geocode.json';
+    appF7.request.json(url, {
+      searchtext: calle+' '+num+' '+city+' '+prov,
+      apiKey: '5fk1FNfRfJF3fUqf5McksZ1b2BsNOamyoHdLNMhhEsY',
+      gen: '9'
+    }, function (data) {
+      // POSICION GEOCODIFICADA de la direccion
+      latitud = data.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+      longitud = data.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+      alert(latitud + " / " + longitud);
+
+    }, function (xhr, status) {
+      console.log("Error geocode: " + status);
+      alert('Error de geocodificacion')
+    });
+  }
+  

@@ -1,14 +1,3 @@
-/*
-    Information about server communication. This sample webservice is provided by Wikitude and returns random dummy
-    places near given location.
- */
-var ServerInformation = {
-    POIDATA_SERVER: "https://example.wikitude.com/GetSamplePois/",
-    POIDATA_SERVER_ARG_LAT: "lat",
-    POIDATA_SERVER_ARG_LON: "lon",
-    POIDATA_SERVER_ARG_NR_POIS: "nrPois"
-};
-
 /* Implementation of AR-Experience (aka "World"). */
 var World = {
 
@@ -64,14 +53,14 @@ var World = {
         });
 
         /* Loop through POI-information and create an AR.GeoObject (=Marker) per POI. */
-        for (var currentPlaceNr = 0; currentPlaceNr < poiData.length; currentPlaceNr++) {
+        for (var e = 0; e < poiData.length; e++) {
             var singlePoi = {
-                "id": poiData[currentPlaceNr].id,
-                "latitude": parseFloat(poiData[currentPlaceNr].latitude),
-                "longitude": parseFloat(poiData[currentPlaceNr].longitude),
-                "altitude": parseFloat(poiData[currentPlaceNr].altitude),
-                "title": poiData[currentPlaceNr].name,
-                "description": poiData[currentPlaceNr].description
+                "id": poiData[e].id,
+                "latitude": parseFloat(poiData[e].latitude),
+                "longitude": parseFloat(poiData[e].longitude),
+                "altitude": parseFloat(poiData[e].altitude),
+                "title": poiData[e].name,
+                "description": poiData[e].description
             };
 
             World.markerList.push(new Marker(singlePoi));
@@ -80,7 +69,7 @@ var World = {
         /* Updates distance information of all placemarks. */
         World.updateDistanceToUserValues();
 
-        World.updateStatusMessage(currentPlaceNr + ' Lugares cargados');
+        World.updateStatusMessage(e + ' Lugares cargados');
 
         /* Set distance slider to 100%. */
         $("#panel-distance-range").val(100);
@@ -117,8 +106,8 @@ var World = {
     */
     /* User clicked "More" button in POI-detail panel -> fire event to open native screen. */
     onPoiDetailMoreButtonClicked: function onPoiDetailMoreButtonClickedFn() {
-        location.href="../servicios.html"
-   
+        location.href = "../servicios.html"
+
     },
 
     /* Location updates, fired every time you call architectView.setLocation() in native environment. */
@@ -135,7 +124,7 @@ var World = {
 
         /* Request data if not already present. */
         if (!World.initiallyLoadedData) {
-            World.requestDataFromServer(lat, lon);
+            World.requestDataFromServer();
             World.initiallyLoadedData = true;
         } else if (World.locationUpdateCounter === 0) {
             /*
@@ -194,7 +183,7 @@ var World = {
         $(".ui-panel-dismiss").unbind("mousedown");
 
         /* Deselect AR-marker when user exits detail screen div. */
-        $("#panel-poidetail").on("panelbeforeclose", function(event, ui) {
+        $("#panel-poidetail").on("panelbeforeclose", function (event, ui) {
             World.currentMarker.setDeselected(World.currentMarker);
         });
     },
@@ -239,7 +228,7 @@ var World = {
         /* Update UI labels accordingly. */
         $("#panel-distance-value").html(maxRangeValue);
         $("#panel-distance-places").html((placesInRange != 1) ?
-            (placesInRange + " Places") : (placesInRange + " Place"));
+            (placesInRange + " Servicios") : (placesInRange + " Servicios"));
 
         World.updateStatusMessage((placesInRange != 1) ?
             (placesInRange + " places loaded") : (placesInRange + " place loaded"));
@@ -270,25 +259,25 @@ var World = {
 
     handlePanelMovements: function handlePanelMovementsFn() {
 
-        $("#panel-distance").on("panelclose", function(event, ui) {
+        $("#panel-distance").on("panelclose", function (event, ui) {
             $("#radarContainer").addClass("radarContainer_left");
             $("#radarContainer").removeClass("radarContainer_right");
             PoiRadar.updatePosition();
         });
 
-        $("#panel-distance").on("panelopen", function(event, ui) {
+        $("#panel-distance").on("panelopen", function (event, ui) {
             $("#radarContainer").removeClass("radarContainer_left");
             $("#radarContainer").addClass("radarContainer_right");
             PoiRadar.updatePosition();
         });
     },
 
-    /* Display range slider. */
+    /* display de rango. */
     showRange: function showRangeFn() {
         if (World.markerList.length > 0) {
 
             /* Update labels on every range movement. */
-            $('#panel-distance-range').change(function() {
+            $('#panel-distance-range').change(function () {
                 World.updateRangeValues();
             });
 
@@ -324,44 +313,59 @@ var World = {
         }
     },
 
+
     /* Request POI data. */
-    requestDataFromServer: function requestDataFromServerFn(lat, lon) {
+    requestDataFromServer: function requestDataFromServerFn() {
+        //World.loadPoisFromJsonData(myJsonData);
 
-        /* Set helper var to avoid requesting places while loading. */
-        World.isRequestingData = true;
-        World.updateStatusMessage('Requesting places from web-service');
+        var json = Buscapp.miMetodo(tipoElegido);
+        World.loadPoisFromJsonData(json);
 
-        /* Server-url to JSON content provider. */
-        var serverUrl = ServerInformation.POIDATA_SERVER + "?" + ServerInformation.POIDATA_SERVER_ARG_LAT + "=" +
-            lat + "&" + ServerInformation.POIDATA_SERVER_ARG_LON + "=" +
-            lon + "&" + ServerInformation.POIDATA_SERVER_ARG_NR_POIS + "=20";
-
-        var jqxhr = $.getJSON(serverUrl, function(data) {
-                World.loadPoisFromJsonData(data);
-            })
-            .error(function(err) {
-                World.updateStatusMessage("Invalid web-service response.", true);
-                World.isRequestingData = false;
-            })
-            .complete(function() {
-                World.isRequestingData = false;
-            });
     },
 
-    /* Helper to sort places by distance. */
+    /* Ayudante para ordenar lugares por distancia. */
     sortByDistanceSorting: function sortByDistanceSortingFn(a, b) {
         return a.distanceToUser - b.distanceToUser;
     },
 
-    /* Helper to sort places by distance, descending. */
+    /* Ayudante para ordenar lugares por distancia, descendiendo. */
     sortByDistanceSortingDescending: function sortByDistanceSortingDescendingFn(a, b) {
         return b.distanceToUser - a.distanceToUser;
     },
 
     onError: function onErrorFn(error) {
         alert(error);
-    }
+    },
+
+
 };
+
+var Buscapp = {
+    miMetodo: function miMetodofn(tipoElegido) {
+        var MiJSON = '[';
+        firebase.firestore().collection("servicios").get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    alert('sbhjbas');
+                    if (doc.data().tipo === tipoElegido) {
+                        alert('agsdhh');
+                        var nombre = doc.data().nombre
+                        var lat = doc.data().lat;
+                        var lon = doc.data().long;
+                        var descripcion = doc.data().descripcion
+                        MiJSON += '{"id":"' + doc.data() + '","longitude":"' + lon + '","latitude":"' + lat + '","description":"' + descripcion + '","name":"' + nombre + '"},'
+                    }
+                });
+                MiJSON += ']';
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+        alert(MiJSON);
+        return (MiJSON)
+    },
+
+};
+
 
 
 /* Forward locationChanges to custom function. */

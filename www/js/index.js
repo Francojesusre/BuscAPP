@@ -59,17 +59,5 @@ var app = {
         [ '2d_tracking' ]
         );
     },
-    locationChanged: function locationChangedFn(lat, lon, alt, acc) {
-        // request data if not already present
-        if (!World.initiallyLoadedData) {
-            var poiData = {
-                "id": 1,
-                "longitude": (lon + (Math.random() / 5 - 0.1)),
-                "latitude": (lat + (Math.random() / 5 - 0.1)),
-                "altitude": 100.0
-            };
-            World.loadPoisFromJsonData(poiData);
-            World.initiallyLoadedData = true;
-        }
-    }
+
 };
