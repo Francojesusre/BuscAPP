@@ -1,6 +1,5 @@
 /* Implementation of AR-Experience (aka "World"). */
 var World = {
-
     /*
         User's latest known location, accessible via userLocation.latitude, userLocation.longitude,
          userLocation.altitude.
@@ -30,6 +29,7 @@ var World = {
     /* Called to inject new POI data. */
     loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData) {
 
+        alert(poiData);
         /* Destroys all existing AR-Objects (markers & radar). */
         AR.context.destroyAll();
 
@@ -316,9 +316,11 @@ var World = {
 
     /* Request POI data. */
     requestDataFromServer: function requestDataFromServerFn() {
-        //World.loadPoisFromJsonData(myJsonData);
 
-        var json = Buscapp.miMetodo(tipoElegido);
+        //World.loadPoisFromJsonData(myJsonData);
+        // import { creaJson } from '../../js/my-app.js';
+        alert('dagvsdghas');
+        var json = Myapp.creaJson();
         World.loadPoisFromJsonData(json);
 
     },
@@ -339,33 +341,6 @@ var World = {
 
 
 };
-
-var Buscapp = {
-    miMetodo: function miMetodofn(tipoElegido) {
-        var MiJSON = '[';
-        firebase.firestore().collection("servicios").get().then(function (querySnapshot) {
-                querySnapshot.forEach(function (doc) {
-                    alert('sbhjbas');
-                    if (doc.data().tipo === tipoElegido) {
-                        alert('agsdhh');
-                        var nombre = doc.data().nombre
-                        var lat = doc.data().lat;
-                        var lon = doc.data().long;
-                        var descripcion = doc.data().descripcion
-                        MiJSON += '{"id":"' + doc.data() + '","longitude":"' + lon + '","latitude":"' + lat + '","description":"' + descripcion + '","name":"' + nombre + '"},'
-                    }
-                });
-                MiJSON += ']';
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-        alert(MiJSON);
-        return (MiJSON)
-    },
-
-};
-
 
 
 /* Forward locationChanges to custom function. */

@@ -39,6 +39,7 @@ var app = {
             app.loadARchitectWorld();
         }
     },
+    
     loadARchitectWorld: function(example) {
         app.wikitudePlugin.isDeviceSupported(function() {
             app.wikitudePlugin.setOnUrlInvokeCallback(app.onUrlInvoke);
