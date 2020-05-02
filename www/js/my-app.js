@@ -1,40 +1,6 @@
   // If we need to use custom DOM library, let's save it to $$ variable:
   var $$ = Dom7;
 
-  var Myapp = {
-      creaJson: function () {
-      alert('tipo: ' + tipo);
-      var jsonArr = [];
-      alert('prueba');
-      serviciosRef.get().then(function (querySnapshot) {
-          querySnapshot.forEach(function (doc) {
-            if (doc.data().tipo === tipo) {            
-              var nombre = doc.data().nombre
-              var lat = doc.data().lat;
-              var lon = doc.data().long;
-              var descripcion = doc.data().descripcion;
-              var id = doc.data().id
-              jsonArr.push({
-                "id": id,
-                "longitude": lon,
-                "latitude": lat,
-                "altitude": "100.0",
-                "description": descripcion,
-                "name": nombre
-              });
-            }
-          });
-          //aux += ']';
-          //console.log('ultima' + aux);
-          alert(jsonArr);
-          return (jsonArr)
-        })
-        .catch(function (error) {
-          console.log("Error: ", error);
-        });
-    }
-  };
-
   var appF7 = new Framework7({
     // App root element
     root: '#app',
@@ -83,6 +49,7 @@
   var usuariosRef = db.collection("usuarios");
   var serviciosRef = db.collection("servicios");
   var tipo;
+  var storage = window.localStorage;
 
   var lat = 0,
     lon = 0;
@@ -105,41 +72,82 @@
     $$('#home').on('click', fnOcultaPanel);
     $$('#addServicio').on('click', fnOcultaPanel);
 
-    $$('.bar').on('click', fnPrueba);
-    $$('.verduleria').on('click', geoAR);
-    $$('.casino').on('click', geoAR);
-    $$('.ypf').on('click', geoAR);
-    $$('.super').on('click', geoAR);
-    $$('.banco').on('click', geoAR);
-
-
+    $$('.bar').on('click', function(){
+      tipo = 'bar'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.verduleria').on('click', function(){
+      tipo = 'verdu'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.casino').on('click', function(){
+      tipo = 'casino'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.ypf').on('click', function(){
+      tipo = 'combustible'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.super').on('click', function(){
+      tipo = 'market'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.banco').on('click', function(){
+      tipo = 'banco'
+      fnCreaJson()
+      geoAR();
+    });
 
 
   });
 
-  $$(document).on('page:init', '.page[data-name="index"]', function (e) {
+  $$(document).on('page:init', '.page[data-name="index"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
     $$('#addServicio').on('click', fnOcultaPanel);
 
-    $$('.bar').on('click', fnPrueba);
-    $$('.verduleria').on('click', geoAR);
-    $$('.casino').on('click', geoAR);
-    $$('.ypf').on('click', geoAR);
-    $$('.super').on('click', geoAR);
-    $$('.banco').on('click', geoAR);
-
-    $$('#prueba').on('click', function () {
-      myapp.creaJson();
+    $$('.bar').on('click', function(){
+      tipo = 'bar'
+      fnCreaJson()
+      geoAR();
     });
-
+    $$('.verduleria').on('click', function(){
+      tipo = 'verdu'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.casino').on('click', function(){
+      tipo = 'casino'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.ypf').on('click', function(){
+      tipo = 'combustible'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.super').on('click', function(){
+      tipo = 'market'
+      fnCreaJson()
+      geoAR();
+    });
+    $$('.banco').on('click', function(){
+      tipo = 'banco'
+      fnCreaJson()
+      geoAR();
+    });
 
   })
 
 
-  $$(document).on('page:init', '.page[data-name="camara"]', function (e) {
+  $$(document).on('page:init', '.page[data-name="camara"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#ingresar').on('click', fnOcultaPanel);
@@ -156,7 +164,7 @@
   });
 
   // Option 2. Using live 'page:init' event handlers for each page
-  $$(document).on('page:init', '.page[data-name="registro"]', function (e) {
+  $$(document).on('page:init', '.page[data-name="registro"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#guardar').on('click', fnRegistro);
@@ -165,7 +173,7 @@
 
   })
 
-  $$(document).on('page:init', '.page[data-name="login"]', function (e) {
+  $$(document).on('page:init', '.page[data-name="login"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#login').on('click', fnLogin);
@@ -173,7 +181,7 @@
     $$('#home').on('click', fnOcultaPanel);
 
   });
-  $$(document).on('page:init', '.page[data-name="regServicios"]', function (e) {
+  $$(document).on('page:init', '.page[data-name="regServicios"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
 
     $$('#ingresar').on('click', fnOcultaPanel);
@@ -351,8 +359,8 @@
         gen: '9'
       }, function (data) {
         // POSICION GEOCODIFICADA de la direccion
-        latitud = data.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
-        longitud = data.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+        var latitud = data.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+        var longitud = data.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
         // alert(latitud + " / " + longitud);
         serviciosRef.add({
             nombre: nombreserv,
@@ -382,6 +390,30 @@
     }
   };
 
-  function fnPrueba() {
-    tipo = 'bar';
+  function fnCreaJson(){
+    var jsonArr = [];
+      serviciosRef.get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            if (doc.data().tipo === tipo) { 
+              var id = doc.id;
+              var nombre = doc.data().nombre;
+              var lat = doc.data().lat;
+              var lon = doc.data().long;
+              var descripcion = doc.data().descripcion;
+              jsonArr.push({
+                "id": id,
+                "longitude": lon,
+                "latitude": lat,
+                "altitude": "100.0",
+                "description": descripcion,
+                "name": nombre
+              });
+            }
+          });
+          storage.clear();
+          storage.setItem('json', JSON.stringify(jsonArr));
+        })
+        .catch(function (error) {
+          console.log("Error: ", error);
+        });
   }

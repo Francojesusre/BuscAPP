@@ -29,7 +29,6 @@ var World = {
     /* Called to inject new POI data. */
     loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData) {
 
-        alert(poiData);
         /* Destroys all existing AR-Objects (markers & radar). */
         AR.context.destroyAll();
 
@@ -317,10 +316,7 @@ var World = {
     /* Request POI data. */
     requestDataFromServer: function requestDataFromServerFn() {
 
-        //World.loadPoisFromJsonData(myJsonData);
-        // import { creaJson } from '../../js/my-app.js';
-        alert('dagvsdghas');
-        var json = Myapp.creaJson();
+        var json = JSON.parse( localStorage.getItem('json') );
         World.loadPoisFromJsonData(json);
 
     },
