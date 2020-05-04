@@ -18,47 +18,52 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         app.wikitudePlugin = cordova.require("com.wikitude.phonegap.WikitudePlugin.WikitudePlugin");
         var launchDemoButton = document.getElementById('launch-demo');
-        launchDemoButton.onclick = function() {
+        launchDemoButton.onclick = function () {
             app.loadARchitectWorld();
         }
     },
-    
-    loadARchitectWorld: function(example) {
-        app.wikitudePlugin.isDeviceSupported(function() {
-            app.wikitudePlugin.setOnUrlInvokeCallback(app.onUrlInvoke);
-            // inject poi data using phonegap's GeoLocation API and inject data using World.loadPoisFromJsonData
-            if ( example.requiredExtension === "ObtainPoiDataFromApplicationModel" ) {
-                navigator.geolocation.getCurrentPosition(onLocationUpdated, onLocationError);
-            }
 
-            app.wikitudePlugin.loadARchitectWorld(function successFn(loadedURL) {
-                }, function errorFn(error) {
-                    alert('Error: ' + error);
-                },
-                cordova.file.dataDirectory + 'www/geo/index.html', [ '2d_tracking' ], { camera_position: 'back' }
-            );
-        }, function(errorMessage) {
-            alert(errorMessage);
-        },
-        [ '2d_tracking' ]
+    loadARchitectWorld: function (example) {
+        app.wikitudePlugin.isDeviceSupported(function () {
+                app.wikitudePlugin.setOnUrlInvokeCallback(app.onUrlInvoke);
+                // inject poi data using phonegap's GeoLocation API and inject data using World.loadPoisFromJsonData
+                if (example.requiredExtension === "ObtainPoiDataFromApplicationModel") {
+                    navigator.geolocation.getCurrentPosition(onLocationUpdated, onLocationError);
+                }
+
+                app.wikitudePlugin.loadARchitectWorld(function successFn(loadedURL) {}, function errorFn(error) {
+                        alert('Error: ' + error);
+                    },
+                    cordova.file.dataDirectory + 'www/geo/indexgeo.html', ['2d_tracking'], {
+                        camera_position: 'back'
+                    }
+                );
+            }, function (errorMessage) {
+                alert(errorMessage);
+            },
+            ['2d_tracking']
         );
     },
-
+    onUrlInvoke: function (url) {
+        app.wikitudePlugin.close();
+        document.location('../servicios.html');
+    }
+    // --- End Wikitude Plugin ---
 };

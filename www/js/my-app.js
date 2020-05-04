@@ -30,10 +30,6 @@
         url: 'registro.html',
       },
       {
-        path: '/camara/',
-        url: 'camara.html',
-      },
-      {
         path: '/servicios/',
         url: 'servicios.html',
       },
@@ -52,16 +48,14 @@
   var storage = window.localStorage;
 
   var lat = 0,
-    lon = 0;
-  var latitud = 0;
-  var longitud = 0;
+      lon = 0;
 
   // Option 1. Using one 'page:init' handler for all pages
   $$(document).on('page:init', function (e) {
     // Do something here when page loaded and initialized
 
   });
-
+ /*
   // Handle Cordova Device Ready Event
   $$(document).on('deviceready', function () {
     console.log("Device is ready!");
@@ -74,6 +68,7 @@
 
     $$('.bar').on('click', function(){
       tipo = 'bar'
+      console.log('entsadasbh');
       fnCreaJson()
       geoAR();
     });
@@ -103,8 +98,8 @@
       geoAR();
     });
 
-
   });
+*/
 
   $$(document).on('page:init', '.page[data-name="index"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
@@ -146,22 +141,6 @@
 
   })
 
-
-  $$(document).on('page:init', '.page[data-name="camara"]', function () {
-    // Do something here when page with data-name="about" attribute loaded and initialized
-
-    $$('#ingresar').on('click', fnOcultaPanel);
-    $$('#home').on('click', fnOcultaPanel);
-
-    $$('#btnMap').on('click', fnPintaMap);
-    $$('#btnCam').on('click', fnPintaCam);
-
-
-    $$('#prueba').on('click', function () {
-      mainView.router.navigate("/servicios/");
-    })
-
-  });
 
   // Option 2. Using live 'page:init' event handlers for each page
   $$(document).on('page:init', '.page[data-name="registro"]', function () {
@@ -253,7 +232,6 @@
   }
 
   function fnLogin() {
-
     var huboError = 0;
     var email = $$('#email').val();
     var clave = $$('#clave').val();
@@ -281,32 +259,6 @@
 
   function fnOcultaPanel() {
     appF7.panel.close();
-  }
-
-  function muestramapa() { //no me funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    // Initialize the platform object:
-    var platform = new H.service.Platform({
-      'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
-    });
-
-    // Obtain the default map types from the platform object
-    var maptypes = platform.createDefaultLayers();
-    //var layers =  platform.createDefaultLayers();
-    // Instantiate (and display) a map object:
-    var map = new H.Map(
-      document.getElementById('mapContainer'),
-      maptypes.vector.normal.map,
-      //layers.raster.terrain.transit
-      {
-        zoom: 15,
-        center: {
-          lng: -61.3333,
-          lat: -33.1167
-        }
-      });
-
-    // Create the default UI:
-    var ui = H.ui.UI.createDefault(map, maptypes, 'es-ES');
   }
 
   function guardaUsuario(nombre, email, clave) {
@@ -375,7 +327,7 @@
           })
           .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
-            alert('entro y guardo en db'); //avisa si guarda
+            alert('Servicio cargado correctamente'); //avisa si guarda
             mainView.router.navigate("/index/");
           })
           .catch(function (error) {

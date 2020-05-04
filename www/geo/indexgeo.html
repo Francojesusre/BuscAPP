@@ -3,23 +3,20 @@
 
 <head>
     <!--  basic meta information -->
+    
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
     <!-- disables pinch-scaling of the webview, so that gestures only do what they're supposed to -->
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" /> 
 
     <title>BuscAPP</title>
 
     <script src="https://www.wikitude.com/libs/architect.js"></script>
     <script src="../ade.js"></script>
 
-    <!-- important for static POI loading - include the static data --> 
-    <script type="text/javascript" src="js/myjsondata.js"></script>
-
     <!-- positioning of poi-radar -->
     <link rel="stylesheet" href="css/poi-radar.css" />
-
 
     <!-- jquery mobile CSS -->
     <link rel="stylesheet" href="jquery/jquery.mobile-1.3.2.min.css" />
@@ -35,10 +32,16 @@
 
     <!-- World logic-->
     <script type="text/javascript" src="js/world.js"></script>
-    <script type="text/javascript" src="js/loadingPoisFromApplicationModel.js"></script>
 
     <!-- radar component -->
     <script type="text/javascript" src="js/radar.js"></script>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+    type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+    type="text/javascript" charset="utf-8"></script>
+
 
 </head>
 
@@ -46,8 +49,9 @@
     <div data-role="page" id="page1" style="background: none;">
         <!-- MAIN PAGE CONTENT -->
         <!-- header of UI holding feature buttons -->
-        <div id="header-status" data-role="header" data-position="fixed" data-theme="c">
+        <div id="header-status" data-role="header" data-position="fixed" data-theme="c" >
             <a href="javascript: World.showRange();" data-icon="gear" data-inline="true" data-mini="true">Rango</a>
+        <a href="javascript: World.reloadPlaces()" data-icon="refresh">Refrescar</a>
             <h1></h1>
         </div>
 
@@ -72,12 +76,11 @@
 
         </div>
 
-
         <!-- PANELS, ONLY VISIBLE ON DEMAND -->
 
         <!-- panel containing POI detail information -->
         <div data-role="panel" id="panel-poidetail" data-position="right" data-display="overlay"
-            style="background-color:#F0F0F0;" data-theme="c">
+            style="background-color:rgb(194, 194, 194);" data-theme="c">
 
             <!-- header with "close" button -->
             <div data-role="header" data-theme="c">
@@ -97,9 +100,8 @@
                 <!-- distance -->
                 <h4>Distancia: <a id="poi-detail-distance"></a></h4>
 
-                <!-- more button-->
-                <a href="javascript: World.onPoiDetailMoreButtonClicked();" data-role="button" data-icon="arrow-r"
-                    data-iconpos="right" data-inline="true">Mas info</a>
+                <!-- mapa-->
+                <div style="width: 63vw; height: 35vh" id="mapContainer"></div>
 
             </div>
         </div>
@@ -107,7 +109,7 @@
 
         <!-- range panel -->
         <div data-role="panel" id="panel-distance" data-position="left" data-display="overlay"
-            style="background-color:#F0F0F0;" data-theme="c">
+            style="background-color:rgb(194, 194, 194);" data-theme="c">
 
             <!-- header with close button -->
             <div data-role="header" data-theme="c">
@@ -133,3 +135,4 @@
 </body>
 
 </html>
+

@@ -52,7 +52,7 @@ function Marker(poiData) {
         }
     });
 
-    this.descriptionLabel = new AR.Label(poiData.description.trunc(15), 0.8, {
+    this.descriptionLabel = new AR.Label(poiData.description.trunc(10), 0.8, {
         zOrder: 1,
         translate: {
             y: -0.55

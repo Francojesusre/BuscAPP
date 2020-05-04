@@ -12,7 +12,7 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
 
-  <meta http-equiv="Content-Security-Policy" content="
+  <!-- <meta http-equiv="Content-Security-Policy" content="
           default-src   * 'self' 'unsafe-inline' 'unsafe-eval';
           script-src    * 'self' 'unsafe-inline' 'unsafe-eval';
           img-src       * data: blob: 'self' 'unsafe-inline' 'unsafe-eval';
@@ -21,7 +21,7 @@
           font-src      * data: file: URIs 'self' 'unsafe-inline' 'unsafe-eval';
           connect-src   * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
           worker-src    * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
-          ">
+          ">  -->
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -38,6 +38,8 @@
   <link rel="stylesheet" href="css/icons.css">
   <!-- Path to your custom app styles-->
   <link rel="stylesheet" href="css/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -76,7 +78,7 @@
           <div class="navbar-inner navBar">
             <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
             <div class="title">BuscAPP</div>
-            <img src="" alt="logo" class="right margenDerecho">
+            <img id="iconoNavbar" src="imagenes/icono.png" alt="logo" class="right margenDerecho">
           </div>
         </div>
 
@@ -177,7 +179,6 @@
     <script type="text/javascript" src="js/my-app.js"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- Wikitude - GeoAR -->
     <script type="text/javascript" src="js/sampleIndices.js"></script>

@@ -1,4 +1,6 @@
-
+*{
+    font-family: 'Varela Round', sans-serif;
+}
 .centro{
     margin:auto;
     text-align: center;
@@ -69,6 +71,9 @@
     align-items: center;  
 }
 
+.cuadrado h2{
+    font-family: 'Zilla Slab', serif;
+}
 .banco{
     background-image: url(../imagenes/banco.jpg);
     background-size: cover;
@@ -202,7 +207,7 @@
 }
 
 .navBar{
-    background-color: teal;
+    background-color: rgb(103, 93, 128);
 }
 
 .marginServicios{

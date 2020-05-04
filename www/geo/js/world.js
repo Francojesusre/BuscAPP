@@ -105,7 +105,6 @@ var World = {
     */
     /* User clicked "More" button in POI-detail panel -> fire event to open native screen. */
     onPoiDetailMoreButtonClicked: function onPoiDetailMoreButtonClickedFn() {
-        location.href = "../servicios.html"
 
     },
 
@@ -175,6 +174,27 @@ var World = {
             (Math.round(marker.distanceToUser) + " m");
 
         $("#poi-detail-distance").html(distanceToUserValue);
+
+
+        //MAPA HERE
+        var lat = marker.poiData.latitude;
+        var lon = marker.poiData.longitude;
+        // Initialize the platform object:
+        var platform = new H.service.Platform({
+            'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
+        });
+
+        // Obtain the default map types from the platform object
+        var defaultLayers = platform.createDefaultLayers();
+
+        // Instantiate (and display) a map object:
+        var map = new H.Map(
+            document.getElementById('mapContainer'),
+            defaultLayers.vector.normal.map,
+            {
+              zoom: 10,
+              center: { lat: 52.5, lng: 13.4 }
+            });
 
         /* Show panel. */
         $("#panel-poidetail").panel("open", 123);
@@ -316,7 +336,7 @@ var World = {
     /* Request POI data. */
     requestDataFromServer: function requestDataFromServerFn() {
 
-        var json = JSON.parse( localStorage.getItem('json') );
+        var json = JSON.parse(localStorage.getItem('json'));
         World.loadPoisFromJsonData(json);
 
     },

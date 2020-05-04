@@ -2,7 +2,7 @@
 var samples = [
     [
         {
-            "path": "www/geo/index.html",
+            "path": "www/geo/indexgeo.html",
             "requiredFeatures": [
                 "2d_tracking"
             ],
