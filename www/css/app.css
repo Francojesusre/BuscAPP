@@ -56,17 +56,23 @@
 #login{
     width: 70vw;
 }
-.categorias{
-    width: 100vw;
-    height: 83.5vh;
+.cateflex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .largo{
-    height: 83.5vh;
+    height: 85.5vh;
     margin: auto;
+    background-color: rgb(187, 187, 187);
+}
+.gris{
+    background-color: rgb(187, 187, 187);
 }
 .cuadrado{
-    width: 155px;
-    height: 155px;
+    width: 165px;
+    height: 165px;
     border-radius: 25px;
     align-items: center;  
 }
@@ -213,3 +219,8 @@
 .marginServicios{
     margin: 10px;
 }
+
+
+
+
+

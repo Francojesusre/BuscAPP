@@ -59,7 +59,8 @@ var World = {
                 "longitude": parseFloat(poiData[e].longitude),
                 "altitude": parseFloat(poiData[e].altitude),
                 "title": poiData[e].name,
-                "description": poiData[e].description
+                "description": poiData[e].description,
+                "web": poiData[e].web,
             };
 
             World.markerList.push(new Marker(singlePoi));
@@ -174,8 +175,7 @@ var World = {
             (Math.round(marker.distanceToUser) + " m");
 
         $("#poi-detail-distance").html(distanceToUserValue);
-
-
+        
         //MAPA HERE
         var lat = marker.poiData.latitude;
         var lon = marker.poiData.longitude;
@@ -190,10 +190,12 @@ var World = {
         // Instantiate (and display) a map object:
         var map = new H.Map(
             document.getElementById('mapContainer'),
-            defaultLayers.vector.normal.map,
-            {
-              zoom: 10,
-              center: { lat: 52.5, lng: 13.4 }
+            defaultLayers.vector.normal.map, {
+                zoom: 10,
+                center: {
+                    lat: lat,
+                    lng: lon
+                }
             });
 
         /* Show panel. */

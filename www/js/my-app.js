@@ -47,20 +47,15 @@
   var tipo;
   var storage = window.localStorage;
 
-  var lat = 0,
-      lon = 0;
-
   // Option 1. Using one 'page:init' handler for all pages
   $$(document).on('page:init', function (e) {
     // Do something here when page loaded and initialized
 
   });
- /*
+ 
   // Handle Cordova Device Ready Event
   $$(document).on('deviceready', function () {
     console.log("Device is ready!");
-
-    $$('.tocaBoton').on('click', fnTocaBoton);
 
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
@@ -68,7 +63,6 @@
 
     $$('.bar').on('click', function(){
       tipo = 'bar'
-      console.log('entsadasbh');
       fnCreaJson()
       geoAR();
     });
@@ -99,7 +93,7 @@
     });
 
   });
-*/
+
 
   $$(document).on('page:init', '.page[data-name="index"]', function () {
     // Do something here when page with data-name="about" attribute loaded and initialized
@@ -172,28 +166,6 @@
 
 
   /** FUNCIONES PROPIAS **/
-  function fnTocaBoton() {
-    var mensaje = "";
-
-    idDelBoton = this.id;
-    mensaje = "Mi ID es: " + idDelBoton + "<br/>";
-
-    // voy a "separar" el valor del id, usando los guiones bajos
-    // el split separa un valor (en este caso una variable),
-    // usando el caracter o caracteres indicandos como parámetro
-    // el resultado es un array!
-    var partes = idDelBoton.split("_");
-
-    // sabiendo la forma: btn_g1_1 puedo tener:
-    p0 = partes[0];
-    p1 = partes[1];
-    p2 = partes[2];
-
-    mensaje += "Soy del Grupo: " + p1 + "<br/>";
-    mensaje += "Y tengo el nro: " + p2 + "<br/>";
-
-    $$('#msgBtn').html(mensaje);
-  }
 
   function fnRegistro() {
     var huboError = 0;
@@ -323,11 +295,11 @@
             descripcion: descripserv,
             tipo: tiposerv,
             lat: latitud,
-            long: longitud,
+            long: longitud
           })
           .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
-            alert('Servicio cargado correctamente'); //avisa si guarda
+            alert('Servicio cargado correctamente');
             mainView.router.navigate("/index/");
           })
           .catch(function (error) {
