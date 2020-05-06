@@ -197,7 +197,7 @@
 }
 
 .fondoPanel{
-    width: 100vw;
+    width: 72vw;
     height: 20vh;
     background-image: url(../imagenes/fondo.jpg);
     background-size: cover;
@@ -205,9 +205,6 @@
 }
 
 #setNombre{
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
     margin: 0;
     color: white;
 }
@@ -219,5 +216,4 @@
 .marginServicios{
     margin: 10px;
 }
-
 
