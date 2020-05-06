@@ -57,6 +57,8 @@
   $$(document).on('deviceready', function () {
     console.log("Device is ready!");
 
+    storage.clear();
+
     $$('#ingresar').on('click', fnOcultaPanel);
     $$('#home').on('click', fnOcultaPanel);
     $$('#addServicio').on('click', fnOcultaPanel);
@@ -217,10 +219,7 @@
         })
         .then(function () {
           if (huboError == 0) {
-            alert('OK');
-            $$('#ingresaPanel').addClass('oculta');
             recuperaNombre(email);
-            mainView.router.navigate("/index/");
           }
         });
     } else {
@@ -241,8 +240,10 @@
       })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
-        alert('entro y gurda en db');
+        alert('entro y gurda en db'); ///////////////////////sacar
         $$('#ingresaPanel').addClass('oculta');
+        storage.removeItem('usuario');
+        storage.setItem('usuario', docRef.id);
         mainView.router.navigate("/index/");
       })
       .catch(function (error) {
@@ -255,11 +256,16 @@
       querySnapshot.forEach(function (doc) {
         // doc.data() is never undefined for query doc snapshots
         if (doc.data().email == mail) {
-          alert('encontrado');
+          storage.removeItem('usuario');
+          storage.setItem('usuario', doc.id);
           $$('#setNombre').html(doc.data().nombre);
+          $$('#ingresaPanel').addClass('oculta');
+          mainView.router.navigate("/index/");
         }
       });
     });
+    $$('#ingresaPanel').addClass('oculta');
+    mainView.router.navigate("/index/");
   }
 
   function geoAR() {
@@ -334,7 +340,7 @@
               });
             }
           });
-          storage.clear();
+          storage.removeItem('json');
           storage.setItem('json', JSON.stringify(jsonArr));
         })
         .catch(function (error) {

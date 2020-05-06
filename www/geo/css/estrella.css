@@ -1,0 +1,13 @@
+.botones img{
+    width: 40px;
+    height: 40px;
+}
+
+.visible{
+    display: block;
+    visibility: visible;
+}
+.oculta{
+    display: none;
+    visibility: hidden;
+}

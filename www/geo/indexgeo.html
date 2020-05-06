@@ -3,19 +3,19 @@
 
 <head>
     <!--  basic meta information -->
-    
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
     <!-- disables pinch-scaling of the webview, so that gestures only do what they're supposed to -->
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" /> 
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 
     <title>BuscAPP</title>
 
     <script src="https://www.wikitude.com/libs/architect.js"></script>
     <script src="../ade.js"></script>
 
-    <!-- estrellas --> 
+    <!-- estrellas -->
     <link rel="stylesheet" href="css/estrella.css">
 
 
@@ -41,10 +41,8 @@
     <script type="text/javascript" src="js/radar.js"></script>
 
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
-    type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
-    type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
 
 
 </head>
@@ -53,9 +51,9 @@
     <div data-role="page" id="page1" style="background: none;">
         <!-- MAIN PAGE CONTENT -->
         <!-- header of UI holding feature buttons -->
-        <div id="header-status" data-role="header" data-position="fixed" data-theme="c" >
+        <div id="header-status" data-role="header" data-position="fixed" data-theme="c">
             <a href="javascript: World.showRange();" data-icon="gear" data-inline="true" data-mini="true">Rango</a>
-        <a href="javascript: World.reloadPlaces()" data-icon="refresh">Refrescar</a>
+            <a href="javascript: World.reloadPlaces()" data-icon="refresh">Refrescar</a>
             <h1></h1>
         </div>
 
@@ -104,6 +102,16 @@
                 <!-- distance -->
                 <h4>Distancia: <a id="poi-detail-distance"></a></h4>
 
+                <!-- valoracion -->
+                <div class="oculta botones" id="linea">
+                    <img src="valoracion/ev_b.png" id="a">
+                    <img src="valoracion/ev_b.png" id="b">
+                    <img src="valoracion/ev_b.png" id="c">
+                    <img src="valoracion/ev_b.png" id="d">
+                    <img src="valoracion/ev_b.png" id="e">                   
+                </div>
+                <h4>Votos:   <a id="cantidadVotos"></a></h4>
+
                 <!-- mapa-->
                 <div style="width: 63vw; height: 35vh" id="mapContainer"></div>
 
@@ -136,7 +144,31 @@
             </div>
         </div>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAsyIVFlKWCNvgornLe0T7ezteJdWso4sQ",
+            authDomain: "buscapp-fjr.firebaseapp.com",
+            databaseURL: "https://buscapp-fjr.firebaseio.com",
+            projectId: "buscapp-fjr",
+            storageBucket: "buscapp-fjr.appspot.com",
+            messagingSenderId: "918660965633",
+            appId: "1:918660965633:web:2f13c03b2710bcc7d22700"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
 </body>
 
-</html>
 
+</html>

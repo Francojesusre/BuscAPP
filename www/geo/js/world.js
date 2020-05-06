@@ -148,6 +148,31 @@ var World = {
     onMarkerSelected: function onMarkerSelectedFn(marker) {
         World.currentMarker = marker;
 
+        var resultado = 0;
+        var estrellas = ['a', 'b', 'c', 'd', 'e'];
+        //pregunto se ya voto en ese servicio
+
+        var db = firebase.firestore();
+        var serviciosRef = db.collection("servicios");
+        var valServicios = serviciosRef.doc(marker.poiData.id).collection("valoracion");
+        var usuario = localStorage.getItem('usuario');
+        var bandera = 1;
+        for (var i = 0; i < estrellas.length; i++) $("#" + estrellas[i]).attr("src", "valoracion/ev_b.png");
+        if (usuario != '') {
+            valServicios.get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    if (doc.data().idUsuario == usuario) {
+                        calcula();
+                        bandera = 0;
+                    }
+                });
+            });
+            if (bandera == 1) {
+                $('#linea').removeClass('oculta').addClass('visible');
+            }
+        }
+
         /*
             In this sample a POI detail panel appears when pressing a cam-marker (the blue box with title &
             description), compare index.html in the sample's directory.
@@ -175,7 +200,140 @@ var World = {
             (Math.round(marker.distanceToUser) + " m");
 
         $("#poi-detail-distance").html(distanceToUserValue);
-        
+
+        //estrellas valoracion
+
+        $("#a").on("click", function () {
+            var n = 1;
+            if (bandera == 1) {
+                valServicios.add({
+                        idUsuario: usuario,
+                        puntos: n,
+                    })
+                    .then(function (docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                        for (i = 0; i < estrellas.length; i++) {
+                            $('#' + estrellas[i]).off('click');
+                        };
+                        calcula();
+                    })
+                    .catch(function (error) {
+                        console.error("Error: ", error);
+                    });
+            }
+        })
+
+        $("#b").on("click", function () {
+            var n = 2;
+            if (bandera == 1) {
+                valServicios.add({
+                        idUsuario: usuario,
+                        puntos: n,
+                    })
+                    .then(function (docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                        for (i = 0; i < estrellas.length; i++) {
+                            $('#' + estrellas[i]).off('click');
+                        };
+                        calcula();
+                    })
+                    .catch(function (error) {
+                        console.error("Error: ", error);
+                    });
+            }
+        })
+
+        $("#c").on("click", function () {
+            var n = 3;
+            if (bandera == 1) {
+                valServicios.add({
+                        idUsuario: usuario,
+                        puntos: n,
+                    })
+                    .then(function (docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                        for (i = 0; i < estrellas.length; i++) {
+                            $('#' + estrellas[i]).off('click');
+                        };
+                        calcula();
+                    })
+                    .catch(function (error) {
+                        console.error("Error: ", error);
+                    });
+            }
+        })
+
+        $("#d").on("click", function () {
+            var n = 4;
+            if (bandera == 1) {
+                valServicios.add({
+                        idUsuario: usuario,
+                        puntos: n,
+                    })
+                    .then(function (docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                        for (i = 0; i < estrellas.length; i++) {
+                            $('#' + estrellas[i]).off('click');
+                        };
+                        calcula();
+                    })
+                    .catch(function (error) {
+                        console.error("Error: ", error);
+                    });
+            }
+        })
+
+        $("#e").on("click", function () {
+            var n = 5;
+            if (bandera == 1) {
+                valServicios.add({
+                        idUsuario: usuario,
+                        puntos: n,
+                    })
+                    .then(function (docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                        for (i = 0; i < estrellas.length; i++) {
+                            $('#' + estrellas[i]).off('click');
+                        };
+                        calcula();
+                    })
+                    .catch(function (error) {
+                        console.error("Error: ", error);
+                    });
+            }
+        })
+
+        function calcula() {
+            $('#linea').removeClass('oculta').addClass('visible');
+            var suma = 0;
+            var contador = 0;
+            valServicios.get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    suma += doc.data().puntos;
+                    contador++;
+                });
+                for (var i = 0; i < estrellas.length; i++) $("#" + estrellas[i]).attr("src", "valoracion/ev_b.png");
+                var promedio = suma / contador;
+                //calcula
+                var n = parseInt(promedio) + 0.5; // n = 3,5
+                var m = parseInt(promedio) + 0.75; // n = 3,75
+                var l = parseInt(promedio) + 0.25; // n = 3,25
+                if ((promedio > l) && (promedio < m)) resultado = n;
+                if (promedio >= m) resultado = parseInt(promedio) + 1;
+                if (promedio <= l) resultado = parseInt(promedio);
+                //dibuja
+                for (var i = 0; i < resultado; i++) $("#" + estrellas[i]).attr("src", "valoracion/ec_b.png");
+                if (resultado - parseInt(resultado) == 0.5) {
+                    $("#" + estrellas[parseInt(resultado)]).attr("src", "valoracion/em_b.png");
+                }
+                $('#cantidadVotos').html('('+contador+')');
+                for (i = 0; i < estrellas.length; i++) {
+                    $('#' + estrellas[i]).off('click');
+                };
+            });
+        }
+
+
         //MAPA HERE
         var lat = marker.poiData.latitude;
         var lon = marker.poiData.longitude;
