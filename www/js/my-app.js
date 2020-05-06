@@ -259,6 +259,7 @@
           storage.removeItem('usuario');
           storage.setItem('usuario', doc.id);
           $$('#setNombre').html(doc.data().nombre);
+          $$('#setEmail').html(doc.data().email);
           $$('#ingresaPanel').addClass('oculta');
           mainView.router.navigate("/index/");
         }

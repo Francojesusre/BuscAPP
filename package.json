@@ -1,12 +1,17 @@
 {
   "devDependencies": {
     "cordova-plugin-whitelist": "1",
-    "com.wikitude.phonegap.WikitudePlugin": "https://github.com/Wikitude/wikitude-cordova-plugin.git"
+    "com.wikitude.phonegap.WikitudePlugin": "https://github.com/Wikitude/wikitude-cordova-plugin.git",
+    "cordova-plugin-splashscreen": "~3.2.1",
+    "cordova-plugin-statusbar": "~2.1.2"
   },
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "com.wikitude.phonegap.WikitudePlugin": {}
+      "com.wikitude.phonegap.WikitudePlugin": {},
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
       "android"
