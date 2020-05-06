@@ -15,7 +15,25 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="com.wikitude.phonegap.WikitudePlugin"
         spec="https://github.com/Wikitude/wikitude-cordova-plugin.git" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
     <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <allow-navigation href="*" />
+    <content src="index.html" />
+    <platform name="android">
+        <preference name="StatusBarOverlaysWebView" value="false" />
+        <preference name="android-minSdkVersion" value="21" />
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashShowOnlyFirstTime" value="true" />
         <icon density="ldpi" src="res/icon/android/ldpi.png" />
@@ -61,30 +79,5 @@
         <splash src="res/screen/ios/Default@2x~ipad~anyany.png" />
         <splash src="res/screen/ios/Default@2x~ipad~comany.png" />
         <!--  Storyboard landscape  -->|
-    </platform>
-    <platform name="wp8">
-        <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
-        <icon height="159" platform="wp8" src="www/res/icon/wp8/Background.png" width="159" />
-        <splash height="1280" platform="wp8" src="www/res/screen/wp8/screen-portrait.jpg" width="768" />
-    </platform>
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-        <access origin="*" />
-        <allow-intent href="*" />
-        <allow-navigation href="*" />
-        <preference name="phonegap-version" value="cli-7.1.0" />
-        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
-        <preference name="android-minSdkVersion" value="14" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
     </platform>
 </widget>
