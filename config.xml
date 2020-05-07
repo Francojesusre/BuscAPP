@@ -21,7 +21,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preferencia nombre = "phonegap-version" value = "cli-9.0.0">
+    
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -32,6 +32,7 @@
     <allow-navigation href="*" />
     <content src="index.html" />
     <platform name="android">
+    <preferencia nombre = "phonegap-version" value = "cli-9.0.0">
         <preference name="StatusBarOverlaysWebView" value="false" />
         <preference name="android-minSdkVersion" value="21" />
         <preference name="SplashMaintainAspectRatio" value="true" />
