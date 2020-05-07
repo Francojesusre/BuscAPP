@@ -1,0 +1,61 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
+<div class="page" data-name="login">
+    <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
+        <div class="fondoPanel">
+          <h2 id="setNombre"></h2>
+        </div>
+        <div class="block">
+          <div class="list links-list">
+            <ul>
+              <li><a href="/index/" id="home">Home</a></li>
+            </ul>
+            <ul>
+              <li id="ingresaPanel"><a href="/login/" id="ingresar">Ingresar</a></li>
+            </ul>
+            <ul>
+              <li class="" id="ingresaServicio"><a href="/regServicios/" id="addServicio">Nuevo servicio</a></li>
+            </ul>
+          </div>
+          <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
+        </div>
+      </div>
+      <div class="navbar">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner navBar">
+          <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
+          <div class="title">Login</div>
+          <img id="iconoNavbar" src="imagenes/icono.png" alt="logo" class="right margenDerecho">
+        </div>
+      </div>
+    <div class="page-content marginTop">
+        <div class="block">
+
+            <img src="imagenes/login.png" alt="foto" id="imagen" class="centroimg">
+            <div class="login-screen-title">Login</div>
+            <form class="list" id="my-form">
+                <li class="item-content item-input item-input-outline ">
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">E-mail</div>
+                        <div class="item-input-wrap">
+                            <input type="email" placeholder="Email" id="email">
+                            <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content item-input item-input-outline ">
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">Contraseña</div>
+                        <div class="item-input-wrap">
+                            <input type="password" placeholder="Contraseña" id="clave">
+                            <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+            </form>
+            <div class="row">
+                <a href="#" class="col button button-large button-fill color-green centro" id="login">Aceptar</a>
+            </div>
+            <div class="col centro marginTop h2"><a href="/registro/" id="registro">Crear un Cuenta nueva</a></div>
+        </div>
+    </div>
+</div>

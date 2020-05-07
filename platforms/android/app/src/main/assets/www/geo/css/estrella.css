@@ -1,0 +1,19 @@
+.botones img{
+    width: 38px;
+    height: 38px;
+}
+
+.visible{
+    display: block;
+    visibility: visible;
+}
+.oculta{
+    display: none;
+    visibility: hidden;
+}
+
+#check{
+    margin-top: 4px;
+    width: 47px;
+    height: 37px;
+}

@@ -1,0 +1,105 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
+<div class="page" data-name="regServicios">
+  <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
+    <div class="fondoPanel">
+      <h2 id="setNombre">Nombre</h2>
+    </div>
+    <div class="block">
+      <div class="list links-list">
+        <ul>
+          <li><a href="/index/" id="home">Home</a></li>
+        </ul>
+        <ul>
+          <li id="ingresaPanel"><a href="/login/" id="ingresar">Ingresar</a></li>
+        </ul>
+      </div>
+      <p class="centro"><a class="centro"><a class="panel-close h2 " id="boton" href="#">Cerrar</a></p>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner">
+      <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
+      <div class="title">Registrar nuevo servicio</div>
+    </div>
+  </div>
+  <div class="page-content ">
+    <div class="">
+      <form class="list" id="my-form">
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Nombre</div>
+            <div class="item-input-wrap">
+              <input type="text" placeholder="Nombre" id="nombreServi">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Provincia</div>
+            <div class="item-input-wrap">
+              <input type="text" placeholder="Provincia" id="provServi">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Ciudad</div>
+            <div class="item-input-wrap">
+              <input type="text" placeholder="Ciudad" id="cityServi">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Calle</div>
+            <div class="item-input-wrap">
+              <input type="text" placeholder="Calle" id="calleServi">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline centro">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Numero</div>
+            <div class="item-input-wrap">
+              <input type="text" placeholder="Numero" id="numServi">
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input item-input-outline">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Descripcion</div>
+            <div class="item-input-wrap">
+              <textarea class="resizable" placeholder="Bio" id="descripServi"></textarea>
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input">
+          <div class="item-inner">
+            <div class="item-title item-label">Tipo</div>
+            <div class="item-input-wrap input-dropdown-wrap">
+              <select placeholder="Please choose..." id="tipoServi">
+                <option value="bar">Bar</option>
+                <option value="combustible">Estacion de combustible</option>
+                <option value="verdu">Verduleria</option>
+                <option value="casino">Casino</option>
+                <option value="banco">Banco</option>
+                <option value="market">Supermercado</option>
+              </select>
+            </div>
+          </div>
+        </li>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col"><a href="#" class="col button button-fill centro" id="guardaServi">Aceptar</a></div>
+    </div>
+  </div>
+</div>

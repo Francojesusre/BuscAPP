@@ -1,0 +1,37 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.wikitude.phonegap.wikitudeplugin": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    },
+    "cordova-plugin-keyboard": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    },
+    "cordova-plugin-wkwebview-file-xhr": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "com.francojesusre.buscapp"
+    }
+  }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+
+  <meta http-equiv="Content-Security-Policy" content="
+          default-src   * 'self' 'unsafe-inline' 'unsafe-eval';
+          script-src    * 'self' 'unsafe-inline' 'unsafe-eval';
+          img-src       * data: blob: 'self' 'unsafe-inline' 'unsafe-eval';
+          frame-src     * 'self' 'unsafe-inline' 'unsafe-eval';
+          style-src     * 'self' 'unsafe-inline' 'unsafe-eval';
+          font-src      * data: file: URIs 'self' 'unsafe-inline' 'unsafe-eval';
+          connect-src   * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
+          worker-src    * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
+          ">
+
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#2196f3">
+  <!-- Your app title -->
+  <title>BuscAPP</title>
+  <!-- Path to Framework7 Library CSS -->
+  <link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
+  <!-- Path to icons -->
+  <link rel="stylesheet" href="css/icons.css">
+  <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <div class="panel panel-left panel-reveal panel-resizable panel-init" id="panel">
+      <div class="fondoPanel">
+        <h2 id="setNombre"></h2>
+        <h3 id="setEmail"></h3>
+      </div>
+      <div class="block">
+        <div class="list links-list">
+          <ul>
+            <li><a href="/index/" id="home">Home</a></li>
+          </ul>
+          <ul>
+            <li id="ingresaPanel"><a href="/login/" id="ingresar">Ingresar</a></li>
+          </ul>
+          <ul>
+            <li id="ingresaServicio"><a href="/regServicios/" id="addServicio">Nuevo servicio</a></li>
+          </ul>
+        </div>
+        <p class="centro"><a class="centro"><a class="panel-close h2" id="boton" href="#">Cerrar</a></p>
+      </div>
+    </div>
+
+    <!-- Statusbar overlay -->
+    <div class="statusbar"></div>
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="index" class="page">
+
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner navBar">
+            <div class="left"><i data-panel=".panel-left" class="panel-open f7-icons btnMenu">menu</i></div>
+            <div class="title">BuscAPP</div>
+            <img id="iconoNavbar" src="imagenes/icono.png" alt="logo" class="right margenDerecho">
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar toolbar-bottom">
+          <div class="toolbar-inner">
+            <!-- Toolbar links -->
+            <a class="button sheet-open centro h2" href="#" data-sheet=".my-sheet-swipe-to-close">Ayuda</a>
+          </div>
+        </div>
+
+        <!-- Scrollable page content -->
+        <div class="page-content text-align-center">
+
+          <div class="categorias">
+            <div class="row largo">
+
+              <div class="col-50 centro cateflex">
+                <div class="display-flex card cuadrado bar">
+                  <h2 class="cont">Bares</h2>
+                </div>
+                <div class="display-flex card cuadrado verduleria">
+                  <h2 class="cont">Verdulerias</h2>
+                </div>
+                <div class="display-flex card cuadrado super">
+                  <h2 class="cont">Market</h2>
+                </div>
+              </div>
+
+              <div class="col-50 centro cateflex">
+                <div class="display-flex card cuadrado ypf">
+                  <h2 class="cont">Estaciones de combustible</h2>
+                </div>
+                <div class="display-flex card cuadrado banco">
+                  <h2 class="cont">Cajeros automaticos</h2>
+                </div>
+                <div class="display-flex card cuadrado casino">
+                  <h2 class="cont">Casinos</h2>
+                </div>
+              </div>
+            </div>
+
+            <!-- Swipe to close sheet -->
+            <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+              <div class="sheet-modal-inner">
+                <div class="page-content">
+                  <div class="block-title block-title-large">Ayuda!</div>
+                  <div class="block">
+                    <p class="txt col">
+                      <h3>
+                        BuscAPP es una excelente herramienta desarrollada para brindar a todo usuario que quiere saber
+                        de los servicios que se encuentran a su alrededor de una manera muy autodidacta.
+                        Encuentra todos esos lugares que necesites de la manera más fácil, solamente apuntando tu
+                        móvil a tus alrededores descubrirás todos tus servicios.
+                        <br>
+                        1. Selecciona una categoria
+                        <br>
+                        2. Sostén el movil a la altura de tus ojos
+                        <br>
+                        3. Disfruta de tus servicios a tu alrededor
+                      </h3>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAsyIVFlKWCNvgornLe0T7ezteJdWso4sQ",
+        authDomain: "buscapp-fjr.firebaseapp.com",
+        databaseURL: "https://buscapp-fjr.firebaseio.com",
+        projectId: "buscapp-fjr",
+        storageBucket: "buscapp-fjr.appspot.com",
+        messagingSenderId: "918660965633",
+        appId: "1:918660965633:web:2f13c03b2710bcc7d22700"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+
+    <!-- Wikitude - GeoAR -->
+    <script type="text/javascript" src="js/sampleIndices.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+      app.initialize();
+    </script>
+    <script type="text/javascript" src="geo/js/world.js"></script>
+
+
+</body>
+
+</html>
