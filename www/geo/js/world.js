@@ -157,13 +157,16 @@ var World = {
         var valServicios = serviciosRef.doc(marker.poiData.id).collection("valoracion");
         var usuario = localStorage.getItem('usuario');
         var bandera = 1;
+        $('#check').removeClass('visible').addClass('oculta');
+        $('#cantidadVotos').html('(0)');
         for (var i = 0; i < estrellas.length; i++) $("#" + estrellas[i]).attr("src", "valoracion/ev_b.png");
         if (usuario != '') {
             valServicios.get().then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                     // doc.data() is never undefined for query doc snapshots
                     if (doc.data().idUsuario == usuario) {
-                        calcula();
+                        $('#check').removeClass('oculta').addClass('visible');
+                        calcula();               
                         bandera = 0;
                     }
                 });
@@ -330,6 +333,7 @@ var World = {
                 for (i = 0; i < estrellas.length; i++) {
                     $('#' + estrellas[i]).off('click');
                 };
+                $('#check').removeClass('oculta').addClass('visible');
             });
         }
 
