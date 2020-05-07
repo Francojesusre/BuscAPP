@@ -8,7 +8,7 @@
     <author email="francojesusre@gmail.com" href="http://phonegap.com">
         Franco Jesus Re
     </author>
-    <content src="index.html" />
+    <content src="index.html"/>
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
