@@ -21,7 +21,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preferencia nombre = "phonegap-version" value = "cli-8.0.0">
+    <preferencia nombre = "phonegap-version" value = "cli-9.0.0">
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
