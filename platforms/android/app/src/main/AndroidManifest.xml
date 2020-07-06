@@ -17,7 +17,7 @@
         </activity>
         <meta-data android:name="com.google.ar.core" android:value="optional" />
     </application>
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="27" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />

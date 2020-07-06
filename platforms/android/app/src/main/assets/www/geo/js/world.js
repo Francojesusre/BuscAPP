@@ -1,4 +1,6 @@
 /* Implementation of AR-Experience (aka "World"). */
+// Initialize the platform object:
+
 var World = {
     /*
         User's latest known location, accessible via userLocation.latitude, userLocation.longitude,
@@ -25,6 +27,8 @@ var World = {
 
     locationUpdateCounter: 0,
     updatePlacemarkDistancesEveryXLocationUpdates: 10,
+
+    
 
     /* Called to inject new POI data. */
     loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData) {
@@ -148,6 +152,35 @@ var World = {
     onMarkerSelected: function onMarkerSelectedFn(marker) {
         World.currentMarker = marker;
 
+        var lati = marker.poiData.latitude;
+        var longi = marker.poiData.longitude;
+        // Initialize the platform object:
+        var platform = new H.service.Platform({
+            'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
+        });
+        
+        // Obtain the default map types from the platform object
+        var defaultLayers = platform.createDefaultLayers();
+
+        // Instantiate (and display) a map object:
+        var map = new H.Map(
+            document.getElementById('mapContainer'),
+            defaultLayers.vector.normal.map, {
+                zoom: 14.5,
+                center: {
+                    lat: lati,
+                    lng: longi,
+                }
+            });
+            if (lati!=0 && longi!=0) {
+                coordsUsu = {lat: lati, lng: longi},
+                markerUsu = new H.map.Marker(coordsUsu);
+                map.addObject(markerUsu);
+            }
+
+
+
+
         var resultado = 0;
         var estrellas = ['a', 'b', 'c', 'd', 'e'];
         //pregunto se ya voto en ese servicio
@@ -157,10 +190,11 @@ var World = {
         var valServicios = serviciosRef.doc(marker.poiData.id).collection("valoracion");
         var usuario = localStorage.getItem('usuario');
         var bandera = 1;
+        $('#linea').removeClass('visible').addClass('oculta');
         $('#check').removeClass('visible').addClass('oculta');
         $('#cantidadVotos').html('(0)');
         for (var i = 0; i < estrellas.length; i++) $("#" + estrellas[i]).attr("src", "valoracion/ev_b.png");
-        if (usuario != '') {
+        if (usuario != ' ') {
             valServicios.get().then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                     // doc.data() is never undefined for query doc snapshots
@@ -336,29 +370,8 @@ var World = {
                 $('#check').removeClass('oculta').addClass('visible');
             });
         }
-
-
-        //MAPA HERE
-        var lat = marker.poiData.latitude;
-        var lon = marker.poiData.longitude;
-        // Initialize the platform object:
-        var platform = new H.service.Platform({
-            'apikey': 'RxYhFAVe1CH0WXf96OiV9oksIeijen1Jk4n_nOfPfoI'
-        });
-
-        // Obtain the default map types from the platform object
-        var defaultLayers = platform.createDefaultLayers();
-
-        // Instantiate (and display) a map object:
-        var map = new H.Map(
-            document.getElementById('mapContainer'),
-            defaultLayers.vector.normal.map, {
-                zoom: 10,
-                center: {
-                    lat: lat,
-                    lng: lon
-                }
-            });
+        
+    
 
         /* Show panel. */
         $("#panel-poidetail").panel("open", 123);

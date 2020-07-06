@@ -10,7 +10,6 @@
             * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
 
   <meta http-equiv="Content-Security-Policy" content="
           default-src   * 'self' 'unsafe-inline' 'unsafe-eval';
@@ -21,7 +20,7 @@
           font-src      * data: file: URIs 'self' 'unsafe-inline' 'unsafe-eval';
           connect-src   * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
           worker-src    * data: blob: file: 'self' 'unsafe-inline' 'unsafe-eval';
-          ">
+          ">   -->
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -58,7 +57,7 @@
             <li id="ingresaPanel"><a href="/login/" id="ingresar">Ingresar</a></li>
           </ul>
           <ul>
-            <li id="ingresaServicio"><a href="/regServicios/" id="addServicio">Nuevo servicio</a></li>
+            <li class="oculta" id="ingresaServicio"><a href="/regServicios/" id="addServicio">Nuevo servicio</a></li>
           </ul>
         </div>
         <p class="centro"><a class="centro"><a class="panel-close h2" id="boton" href="#">Cerrar</a></p>

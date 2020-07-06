@@ -194,8 +194,8 @@
         })
         .then(function () {
           if (huboError == 0) {
-            alert('OK');
             $$('#setNombre').html(nombre);
+            $$('#setEmail').html(email);
             guardaUsuario(nombre, email, clave);
 
           }
@@ -240,7 +240,6 @@
       })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
-        alert('entro y gurda en db'); ///////////////////////sacar
         $$('#ingresaPanel').addClass('oculta');
         storage.removeItem('usuario');
         storage.setItem('usuario', docRef.id);
@@ -254,7 +253,6 @@
   function recuperaNombre(mail) {
     usuariosRef.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
         if (doc.data().email == mail) {
           storage.removeItem('usuario');
           storage.setItem('usuario', doc.id);
